@@ -7,6 +7,7 @@ import Dashboard from "../layout/DashboardLayout";
 import AdminHome from "../pages/Dashboard/admin/AdminHome";
 import UserHome from "../pages/Dashboard/user/UserHome";
 import DeliveryMan from "../pages/Dashboard/deliveryMan/DeliveryMan";
+import BookParcel from "../pages/Dashboard/user/BookParcel";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
         {
           path: 'userHome',
           element: <UserHome></UserHome>
+        },
+        {
+          path: 'bookParcel',
+          element: <BookParcel></BookParcel>
         },
 
         // Delivery Man
