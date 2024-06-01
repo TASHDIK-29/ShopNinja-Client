@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { Link, NavLink } from "react-router-dom";
+import useUserRole from "../../../hooks/useUserRole";
 
 const Nav = () => {
 
@@ -20,7 +21,11 @@ const Nav = () => {
 
 
 
-    // DropDown
+    // Role
+
+    const role = useUserRole();
+
+    
 
 
 
@@ -62,9 +67,15 @@ const Nav = () => {
                         <NavLink to='/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Home
                         </NavLink>
-                        <Link to = '/dashboard' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'admin' && <Link to='/dashboard/adminHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
-                        </Link>
+                        </Link>}
+                        {role === 'user' && <Link to='/dashboard/userHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                            Dashboard
+                        </Link>}
+                        {role === 'deliveryMan' && <Link to='/dashboard/deliveryManHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                            Dashboard
+                        </Link>}
 
                     </div>
 
@@ -86,7 +97,7 @@ const Nav = () => {
 
 
 
-                                
+
                             </>
                                 : <Link to='/login'>Login</Link>
                         }

@@ -21,13 +21,16 @@ const Dashboard = () => {
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="pl-4">
                     {
-                        isAdmin ? <>
+                        role === 'admin' ? <>
                             <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/adminHome'>Admin Home</NavLink></li>
-                            
+
                         </>
-                            : <>
-                                
+                            : role === 'user' ? <>
+                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/userHome'>User Home</NavLink></li>
                             </>
+                                : <>
+                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/deliveryManHome'>Delivery Man Home</NavLink></li>
+                                </>
                     }
                 </ul>
                 <div className="divider p-4"></div>
