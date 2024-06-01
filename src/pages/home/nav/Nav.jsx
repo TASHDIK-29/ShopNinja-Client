@@ -59,12 +59,12 @@ const Nav = () => {
                         }`}
                 >
                     <div className="flex flex-col md:flex-row md:mx-6">
-                        <NavLink to='/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0" href="#">
+                        <NavLink to='/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Home
                         </NavLink>
-                        <a className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0" href="#">
+                        <Link to = '/dashboard' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
-                        </a>
+                        </Link>
 
                     </div>
 

@@ -1,33 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 // import useAuth from "../../hooks/useAuth";
-// import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
 
     const navigate = useNavigate();
 
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
-    const {googleSignIn} = useAuth();
+    const { googleSignIn } = useAuth();
 
-    const handelGoogle = () =>{
+    const handelGoogle = () => {
         googleSignIn()
-        .then(res =>{
-            console.log(res.user);
-            // const userInfo={
-            //     name: res.user?.displayName,
-            //     email: res.user?.email
-            // }
-            // axiosPublic.post('/users', userInfo)
-            // .then(res =>{
-            //     console.log(res.data);
-            //     navigate('/');
-            // })
+            .then(res => {
+                console.log(res.user);
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    role: 'user',
+                    image: res.user?.photoURL
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate('/');
+                    })
 
-            navigate('/'); // initial
-        })
-        
+                //navigate('/'); // initial
+            })
+
     }
     return (
         <div>
@@ -50,7 +52,7 @@ const SocialLogin = () => {
                     <span>Sign in with Google</span>
                 </button>
 
-                
+
             </div>
         </div>
     );

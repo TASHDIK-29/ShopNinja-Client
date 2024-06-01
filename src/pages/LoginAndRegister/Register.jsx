@@ -1,16 +1,16 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-// import Swal from "sweetalert2";
-// import useAxiosPublic from "../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { FaClipboardUser } from "react-icons/fa6";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
 
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate();
 
@@ -35,27 +35,29 @@ const Register = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         // Post User data to DB
-                        // const userInfo = {
-                        //     name: data.name,
-                        //     email: data.email
-                        // }
-                        // axiosPublic.post('/users', userInfo)
-                        // .then(res => {
-                        //     if (res.data.insertedId) {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            role: data.type,
+                            image: data.photoURL
+                        }
+                        axiosPublic.post('/users', userInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
 
-                        //         console.log('user added to the db');
+                                console.log('user added to the db');
 
-                        //         Swal.fire({
-                        //             position: "top-center",
-                        //             icon: "success",
-                        //             title: "You have successfully create an account",
-                        //             showConfirmButton: false,
-                        //             timer: 1500
-                        //         });
+                                Swal.fire({
+                                    position: "top-center",
+                                    icon: "success",
+                                    title: "You have successfully create an account",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
 
-                        //         navigate('/');
-                        //     }
-                        // })
+                                // navigate('/');
+                            }
+                        })
                         
                         logoutUser();
                         navigate('/login');  // initial 
