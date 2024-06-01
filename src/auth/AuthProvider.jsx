@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 // import { app } from "./firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import app from "./firebase.config";
-// import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 
@@ -14,7 +14,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -52,46 +52,46 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            setLoading(false);
-            console.log('Current user', currentUser);
-            // if (currentUser) {
-            //     setLoading(false);
-            // }
-        })
-
-        return () => unsubscribe();
-    }, [])
-
-
-    // useEffect( () =>{
-    //     const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, currentUser => {
     //         setUser(currentUser);
+    //         setLoading(false);
     //         console.log('Current user', currentUser);
-
-    //         if(currentUser){
-    //             const userInfo = {email: currentUser.email}
-    //             // Get token request
-    //             axiosPublic.post('/jwt', userInfo)
-    //             .then(res =>{
-    //                 if(res.data.token){
-    //                     localStorage.setItem('token', res.data.token);
-    //                 }
-    //                 setLoading(false);
-    //             })
-    //         }
-    //         else{
-    //             // Remove Token from cookie
-    //             localStorage.removeItem('token');
-    //             setLoading(false);
-    //         }
-    //         // setLoading(false);
+    //         // if (currentUser) {
+    //         //     setLoading(false);
+    //         // }
     //     })
 
     //     return () => unsubscribe();
-    // }, [axiosPublic])
+    // }, [])
+
+
+    useEffect( () =>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+            setUser(currentUser);
+            console.log('Current user', currentUser);
+
+            if(currentUser){
+                const userInfo = {email: currentUser.email}
+                // Get token request
+                axiosPublic.post('/jwt', userInfo)
+                .then(res =>{
+                    if(res.data.token){
+                        localStorage.setItem('token', res.data.token);
+                    }
+                    setLoading(false);
+                })
+            }
+            else{
+                // Remove Token from localStorage
+                localStorage.removeItem('token');
+                setLoading(false);
+            }
+            // setLoading(false);
+        })
+
+        return () => unsubscribe();
+    }, [axiosPublic])
 
 
 
