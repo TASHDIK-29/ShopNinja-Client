@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaCalendar, FaCartArrowDown, FaHome, FaList, FaSearch, FaStar, FaUsers, FaUtensilSpoon, FaUtensils } from "react-icons/fa";
 import { FaBookJournalWhills, FaMoneyBill, FaSpoon } from "react-icons/fa6";
 import { MdOutlineRestaurantMenu, MdPhone } from "react-icons/md";
+import useUserRole from "../hooks/useUserRole";
 // import useCart from "../hooks/useCart";
 // import useAdmin from "../hooks/useAdmin";
 
@@ -12,7 +13,8 @@ const Dashboard = () => {
     // const [isAdmin] = useAdmin();
     // console.log('from dashboard', isAdmin);
 
-    
+    const role = useUserRole();
+    console.log(role);
 
     return (
         <div className="flex">
