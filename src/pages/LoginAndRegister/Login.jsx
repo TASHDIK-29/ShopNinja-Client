@@ -9,7 +9,7 @@ import SocialLogin from '../../components/socialLogin/SocialLogin';
 
 const Login = () => {
 
-    const { loginUser } = useAuth;
+    const { loginUser } = useAuth();
 
     const location = useLocation();
     const navigate = useNavigate();

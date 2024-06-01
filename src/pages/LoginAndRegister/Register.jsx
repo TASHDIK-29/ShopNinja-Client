@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 // import useAxiosPublic from "../hooks/useAxiosPublic";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import { FaClipboardUser } from "react-icons/fa6";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 const Register = () => {
 
@@ -12,7 +14,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, logoutUser } = useAuth();
 
     const {
         register,
@@ -38,24 +40,25 @@ const Register = () => {
                         //     email: data.email
                         // }
                         // axiosPublic.post('/users', userInfo)
-                            // .then(res => {
-                            //     if (res.data.insertedId) {
+                        // .then(res => {
+                        //     if (res.data.insertedId) {
 
-                            //         console.log('user added to the db');
+                        //         console.log('user added to the db');
 
-                            //         Swal.fire({
-                            //             position: "top-center",
-                            //             icon: "success",
-                            //             title: "You have successfully create an account",
-                            //             showConfirmButton: false,
-                            //             timer: 1500
-                            //         });
+                        //         Swal.fire({
+                        //             position: "top-center",
+                        //             icon: "success",
+                        //             title: "You have successfully create an account",
+                        //             showConfirmButton: false,
+                        //             timer: 1500
+                        //         });
 
-                            //         navigate('/');
-                            //     }
-                            // })
-                        console.log('Updated');
-                        navigate('/');  // initial 
+                        //         navigate('/');
+                        //     }
+                        // })
+                        
+                        logoutUser();
+                        navigate('/login');  // initial 
                     })
                     .catch(err => console.log(err))
 
@@ -101,14 +104,12 @@ const Register = () => {
 
                     <div className="relative flex items-center mt-8">
                         <span className="absolute">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
+                        <MdOutlineAddPhotoAlternate className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"/>
                         </span>
                         <input type="text" {...register("photoURL", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="PhotoURL" />
 
                     </div>
-                    {errors.photo && <span className="text-red-600 font-bold">Photo URL is required</span>}
+                    {errors.photoURL && <span className="text-red-600 font-bold">Photo URL is required</span>}
 
                     {/* <label htmlFor="dropzone-file" className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -128,6 +129,24 @@ const Register = () => {
                     </div>
                     {errors.email && <span className="text-red-600 font-bold">Email is required</span>}
 
+                    {/* User type */}
+                    <div className="relative flex items-center mt-6">
+                        <span className="absolute">
+                        <FaClipboardUser className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
+                        </span>
+                       
+                            <select {...register("type", { required: true })}
+                                className="select select-bordered w-full px-11">
+                                {/* <option disabled selected>Select a Type</option> */}
+                                <option value="user">User</option>
+                                <option value="deliveryMan">DeliveryMan</option>
+                                
+                            </select>
+
+                        
+                    </div>
+                    {errors.type && <span className="text-red-600 font-bold">Please select your user type</span>}
+
                     <div className="relative flex items-center mt-4">
                         <span className="absolute">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -140,6 +159,7 @@ const Register = () => {
                     {errors.password?.type === 'minLength' && <span className="text-red-600 font-bold">Password must be 6 characters</span>}
                     {errors.password?.type === 'maxLength' && <span className="text-red-600 font-bold">Password must be less than 20 characters</span>}
                     {errors.password?.type === 'pattern' && <span className="text-red-600 font-bold">Password must contain at least one Uppercase and Special character</span>}
+
 
                     {/* <div className="relative flex items-center mt-4">
                         <span className="absolute">

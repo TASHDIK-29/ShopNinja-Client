@@ -4,13 +4,25 @@ import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
 
-    const {user} = useAuth();
+    const { user, logoutUser } = useAuth();
 
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+
+    const handelLogout = () => {
+        logoutUser();
+    }
+
+
+
+
+    // DropDown
+
+
 
     return (
         <nav className="relative bg-white shadow ">
@@ -47,22 +59,36 @@ const Nav = () => {
                         }`}
                 >
                     <div className="flex flex-col md:flex-row md:mx-6">
-                        <NavLink to = '/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0" href="#">
+                        <NavLink to='/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0" href="#">
                             Home
                         </NavLink>
                         <a className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0" href="#">
                             Dashboard
                         </a>
-                        
+
                     </div>
 
                     <div className="flex justify-center md:block">
-                        
+
                         {
                             user ? <>
-                            {user?.displayName}
+
+                                <div className="dropdown dropdown-bottom dropdown-end">
+                                    <div tabIndex={0} role="button" className="m-1 w-12 h-12 rounded-full">
+                                        <img className="w-full rounded-full" src={user?.photoURL} alt="" />
+                                    </div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li><a>Item 1</a></li>
+                                        <li><button onClick={handelLogout}>Logout</button></li>
+                                    </ul>
+                                </div>
+
+
+
+
+                                
                             </>
-                            : <Link to = '/login'>Login</Link>
+                                : <Link to='/login'>Login</Link>
                         }
                     </div>
                 </div>
