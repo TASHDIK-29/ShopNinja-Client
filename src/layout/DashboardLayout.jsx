@@ -28,6 +28,7 @@ const Dashboard = () => {
                             : role === 'user' ? <>
                                 <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/userParcel'>My Parcels</NavLink></li>
                                 <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/bookParcel'>Book A Parcel</NavLink></li>
+                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/userProfile'>My Profile</NavLink></li>
                             </>
                                 : <>
                                     <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/deliveryManHome'>Delivery Man Home</NavLink></li>

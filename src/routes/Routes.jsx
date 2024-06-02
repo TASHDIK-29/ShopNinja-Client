@@ -8,6 +8,7 @@ import AdminHome from "../pages/Dashboard/admin/AdminHome";
 import DeliveryMan from "../pages/Dashboard/deliveryMan/DeliveryMan";
 import BookParcel from "../pages/Dashboard/user/BookParcel";
 import UserParcels from "../pages/Dashboard/user/UserParcels";
+import UserProfile from "../pages/Dashboard/user/UserProfile";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         {
           path: 'bookParcel',
           element: <BookParcel></BookParcel>
+        },
+        {
+          path: 'userProfile',
+          element: <UserProfile></UserProfile>
         },
 
         // Delivery Man

@@ -9,7 +9,7 @@ const UserParcels = () => {
     const axiosSecure = useAxiosSecure();
 
     const {data: parcels=[]} = useQuery({
-        queryKey: [user?.displayName],
+        queryKey: ['parcel'],
         queryFn: async () =>{
             const res = await axiosSecure.get(`/user/parcel/${user?.email}`);
 
