@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const UserProfile = () => {
 
-    const { user } = useAuth();
+    const { user, updateUserProfile } = useAuth();
 
     const axiosSecure = useAxiosSecure();
 
@@ -46,6 +46,8 @@ const UserProfile = () => {
                     });
 
                     refetch();
+
+                    updateUserProfile(user.displayName, imageURL)
                 }
             } catch (err) {
                 console.log(err);

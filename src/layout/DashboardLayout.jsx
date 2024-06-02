@@ -22,7 +22,8 @@ const Dashboard = () => {
                 <ul className="pl-4">
                     {
                         role === 'admin' ? <>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/adminHome'>Admin Home</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/adminHome'>Statistics</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allParcels'>All Parcels</NavLink></li>
 
                         </>
                             : role === 'user' ? <>
