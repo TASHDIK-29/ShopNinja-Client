@@ -1,6 +1,50 @@
+import { useEffect, useState } from "react";
+import AdminManageParcelModal from "../modals/AdminManageParcelModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const AdminAllParcelsTable = ({ parcels }) => {
     console.log('parcels :', parcels);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const [id, setId] = useState('');
+
+    const [patchData, setPatchData] = useState({});
+
+    const axiosSecure = useAxiosSecure();
+
+
+    // Get all parcels
+    const { data: deliveryMans = [] , refetch} = useQuery({
+        queryKey: ['parcel'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/deliveryMan`);
+
+            return res.data;
+        }
+    })
+
+    const handelManage = async (id) => {
+        setIsOpen(true);
+
+        setId(id);
+
+        console.log(id);
+
+    }
+
+    useEffect(() => {
+        axiosSecure.put(`/parcels/${id}`, patchData)
+            .then(res => {
+                console.log(res.data);
+
+                if(res.data.modifiedCount){
+                    refetch();
+                }
+            })
+    }, [patchData])
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -26,12 +70,23 @@ const AdminAllParcelsTable = ({ parcels }) => {
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.price}</td>
                             <td>{parcel?.status}</td>
-                            <td><button className="btn">Manage</button></td>
+                            <td>
+                                <button
+                                    onClick={() => handelManage(parcel?._id)}
+                                    className="px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                                >
+                                    Manage
+                                </button>
+                            </td>
                         </tr>)
                     }
 
                 </tbody>
             </table>
+
+            {
+                isOpen && <AdminManageParcelModal setIsOpen={setIsOpen} setPatchData={setPatchData} deliveryMans={deliveryMans}></AdminManageParcelModal>
+            }
         </div>
     );
 };
