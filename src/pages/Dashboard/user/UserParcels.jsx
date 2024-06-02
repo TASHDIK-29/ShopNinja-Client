@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import UserParcelsTable from "../../../components/tables/UserParcelsTable";
 
 const UserParcels = () => {
 
@@ -8,7 +9,7 @@ const UserParcels = () => {
     const axiosSecure = useAxiosSecure();
 
     const {data: parcels=[]} = useQuery({
-        queryKey: [user.email],
+        queryKey: [user?.displayName],
         queryFn: async () =>{
             const res = await axiosSecure.get(`/user/parcel/${user?.email}`);
 
@@ -21,6 +22,7 @@ const UserParcels = () => {
     return (
         <div>
             my parcels
+            <UserParcelsTable parcels={parcels}></UserParcelsTable>
         </div>
     );
 };

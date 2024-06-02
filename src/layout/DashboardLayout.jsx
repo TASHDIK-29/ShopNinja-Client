@@ -14,7 +14,7 @@ const Dashboard = () => {
     // console.log('from dashboard', isAdmin);
 
     const role = useUserRole();
-    console.log(role);
+    console.log('Role = ',role);
 
     return (
         <div className="flex">
