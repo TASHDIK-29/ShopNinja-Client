@@ -3,6 +3,7 @@ import ParcelForm from "../../../components/forms/ParcelForm";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const BookParcel = () => {
 
@@ -20,6 +21,15 @@ const BookParcel = () => {
                 .then(res => {
                     console.log(res.data);
 
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Parcel placed successfully. Please wait for admin approval",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
                 })
         }
     }, [parcel])

@@ -70,7 +70,7 @@ const Nav = () => {
                         {role === 'admin' && <Link to='/dashboard/adminHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
-                        {role === 'user' && <Link to='/dashboard/userHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'user' && <Link to='/dashboard/userParcel' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
                         {role === 'deliveryMan' && <Link to='/dashboard/deliveryManHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">

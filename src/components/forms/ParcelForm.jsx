@@ -45,13 +45,14 @@ const ParcelForm = ({setParcel}) => {
         const parcelType = form.parcelType.value;
         const parcelWeight = parseFloat(form.parcelWeight.value);
         const deliveryDate = form.deliveryDate.value;
+        const bookingDate = new Date().toLocaleDateString();
         const receiverName = form.receiverName.value;
         const receiverPhone = form.receiverPhone.value;
         const deliveryAddress = form.deliveryAddress.value;
-        const latitude = form.latitude.value;
-        const longitude = form.longitude.value;
+        const latitude = parseFloat(form.latitude.value);
+        const longitude = parseFloat(form.longitude.value);
 
-
+        
         const parcel = {
             userName,
             email,
@@ -59,6 +60,7 @@ const ParcelForm = ({setParcel}) => {
             parcelType,
             parcelWeight,
             deliveryDate,
+            bookingDate,
             receiverName,
             receiverPhone,
             deliveryAddress,
@@ -178,7 +180,7 @@ const ParcelForm = ({setParcel}) => {
                         <label className="text-gray-700 " htmlFor="emailAddress">Address Latitude</label>
                         <input
                             name="latitude"
-                            type="email"
+                            type="text"
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                         />
                     </div>
