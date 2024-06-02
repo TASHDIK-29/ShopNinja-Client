@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../utils/imageURL";
+import Swal from "sweetalert2";
 
 const UserProfile = () => {
 
@@ -9,7 +10,7 @@ const UserProfile = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: userInfo = {} } = useQuery({
+    const { data: userInfo = {} , refetch} = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${user?.email}`);
@@ -22,12 +23,34 @@ const UserProfile = () => {
 
 
     // Image Update
-    const handelImage = async(image) =>{
+    const handelImage = async (image) => {
         console.log(image);
 
         const imageURL = await imageUpload(image)
 
         console.log('URL = ', imageURL);
+
+        if (imageURL) {
+            try {
+                const { data } = await axiosSecure.put(`/users/image/${userInfo?._id}`, { imageURL })
+
+                console.log(data);
+
+                if (data.modifiedCount) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Image Update Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    refetch();
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
     }
 
     return (
@@ -98,13 +121,13 @@ const UserProfile = () => {
                                             </svg>
 
                                             <h2 className="mt-1 font-medium tracking-wide text-gray-700 ">Upload Image</h2>
-                                            <input 
-                                            id="dropzone-file"
-                                            type="file" 
-                                            name='image' 
-                                            onChange={(e) => handelImage(e.target.files[0])}
-                                            accept="image/*" 
-                                            className="hidden" />
+                                            <input
+                                                id="dropzone-file"
+                                                type="file"
+                                                name='image'
+                                                onChange={(e) => handelImage(e.target.files[0])}
+                                                accept="image/*"
+                                                className="hidden" />
                                         </label>
                                     </div>
 

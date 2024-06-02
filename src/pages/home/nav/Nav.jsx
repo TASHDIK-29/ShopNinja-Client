@@ -73,7 +73,7 @@ const Nav = () => {
                         {role === 'user' && <Link to='/dashboard/userParcel' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
-                        {role === 'deliveryMan' && <Link to='/dashboard/deliveryManHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
 

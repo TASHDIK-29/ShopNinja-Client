@@ -9,6 +9,7 @@ import DeliveryMan from "../pages/Dashboard/deliveryMan/DeliveryMan";
 import BookParcel from "../pages/Dashboard/user/BookParcel";
 import UserParcels from "../pages/Dashboard/user/UserParcels";
 import UserProfile from "../pages/Dashboard/user/UserProfile";
+import DeliveryList from "../pages/Dashboard/deliveryMan/DeliveryList";
 
 export const router = createBrowserRouter([
     {
@@ -55,8 +56,8 @@ export const router = createBrowserRouter([
 
         // Delivery Man
         {
-          path: 'deliveryManHome',
-          element: <DeliveryMan></DeliveryMan>
+          path: 'deliveryList',
+          element: <DeliveryList></DeliveryList>
         },
       ]
     }
