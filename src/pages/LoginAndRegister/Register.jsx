@@ -6,6 +6,8 @@ import SocialLogin from "../../components/socialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { FaClipboardUser } from "react-icons/fa6";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+import { FiPhone } from "react-icons/fi";
+
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
@@ -39,26 +41,27 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             role: data.type,
-                            image: data.photoURL
+                            image: data.photoURL,
+                            phone: data.phone
                         }
                         axiosPublic.post('/users', userInfo)
-                        .then(res => {
-                            if (res.data.insertedId) {
+                            .then(res => {
+                                if (res.data.insertedId) {
 
-                                console.log('user added to the db');
+                                    console.log('user added to the db');
 
-                                Swal.fire({
-                                    position: "top-center",
-                                    icon: "success",
-                                    title: "You have successfully create an account",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
+                                    Swal.fire({
+                                        position: "top-center",
+                                        icon: "success",
+                                        title: "You have successfully create an account",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
 
-                                // navigate('/');
-                            }
-                        })
-                        
+                                    // navigate('/');
+                                }
+                            })
+
                         logoutUser();
                         navigate('/login');  // initial 
                     })
@@ -84,9 +87,7 @@ const Register = () => {
                     </div>
 
                     <div className="flex items-center justify-center mt-6">
-                        {/* <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300">
-                            sign in
-                        </a> */}
+                        
 
                         <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400">
                             sign up
@@ -106,20 +107,41 @@ const Register = () => {
 
                     <div className="relative flex items-center mt-8">
                         <span className="absolute">
-                        <MdOutlineAddPhotoAlternate className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"/>
+                            <MdOutlineAddPhotoAlternate className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
                         </span>
                         <input type="text" {...register("photoURL", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="PhotoURL" />
 
                     </div>
                     {errors.photoURL && <span className="text-red-600 font-bold">Photo URL is required</span>}
 
-                    {/* <label htmlFor="dropzone-file" className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                        </svg>
-                        <h2 className="mx-3 text-gray-400">Profile Photo</h2>
-                        <input id="dropzone-file" type="file" className="hidden" />
-                    </label> */}
+                    
+                    {/* User type */}
+                    <div className="relative flex items-center mt-6">
+                        <span className="absolute">
+                            <FaClipboardUser className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
+                        </span>
+
+                        <select {...register("type", { required: true })}
+                            className="select select-bordered w-full px-11">
+                            {/* <option disabled selected>Select a Type</option> */}
+                            <option value="user">User</option>
+                            <option value="deliveryMan">DeliveryMan</option>
+
+                        </select>
+
+
+                    </div>
+                    {errors.type && <span className="text-red-600 font-bold">Please select your user type</span>}
+
+                    <div className="relative flex items-center mt-8">
+                        <span className="absolute">
+                            <FiPhone className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
+                        </span>
+                        <input type="text" {...register("phone", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="phone number" />
+
+                    </div>
+                    {errors.phone && <span className="text-red-600 font-bold">Phone number is required</span>}
+
 
                     <div className="relative flex items-center mt-6">
                         <span className="absolute">
@@ -130,24 +152,6 @@ const Register = () => {
                         <input type="email" {...register("email", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                     </div>
                     {errors.email && <span className="text-red-600 font-bold">Email is required</span>}
-
-                    {/* User type */}
-                    <div className="relative flex items-center mt-6">
-                        <span className="absolute">
-                        <FaClipboardUser className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
-                        </span>
-                       
-                            <select {...register("type", { required: true })}
-                                className="select select-bordered w-full px-11">
-                                {/* <option disabled selected>Select a Type</option> */}
-                                <option value="user">User</option>
-                                <option value="deliveryMan">DeliveryMan</option>
-                                
-                            </select>
-
-                        
-                    </div>
-                    {errors.type && <span className="text-red-600 font-bold">Please select your user type</span>}
 
                     <div className="relative flex items-center mt-4">
                         <span className="absolute">

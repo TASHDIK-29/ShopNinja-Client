@@ -9,8 +9,8 @@ const UserParcelsTable = ({ parcels }) => {
                     <tr>
                         <th>#</th>
                         <th>Parcel Type</th>
-                        <th>Requested Delivery Date</th>
-                        <th>Approximate Delivery Date,</th>
+                        <th>Requested <br /> Delivery Date</th>
+                        <th>Approximate <br /> Delivery Date,</th>
                         <th>Booking Date</th>
                         <th>Delivery Men ID</th>
                         <th>Status</th>
@@ -28,7 +28,11 @@ const UserParcelsTable = ({ parcels }) => {
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.approxDeliveryDate}</td>
                             <td>{parcel?.bookingDate}</td>
-                            <td>{parcel?.deliveryManId}</td>
+                            <td>
+                                {parcel?.deliveryManId ? parcel.deliveryManId.slice(0, 4) : ''}
+                                {parcel?.deliveryManId ? '***' : ''}
+                                {parcel?.deliveryManId ? parcel.deliveryManId.slice(20, parcel.deliveryManId.length) : ''}
+                                </td>
                             <td>{parcel?.status}</td>
                             <td></td>
                             <td></td>
