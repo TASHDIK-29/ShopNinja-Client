@@ -7,12 +7,11 @@ const AdminAllDeliveryManTable = ({deliveryMans, refetch}) => {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>User’s Name</th>
-                        <th>User’s Phone</th>
-                        <th>Number of parcel Booked</th>
-                        <th>Total Spent Amount</th>
-                        <th>Make Admin</th>
-                        <th>Make D Man</th>
+                        <th>Deliveryman’s Name</th>
+                        <th>Deliveryman’s Phone</th>
+                        <th>Number of parcel Delivered</th>
+                        <th>Avg. Review</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -23,9 +22,7 @@ const AdminAllDeliveryManTable = ({deliveryMans, refetch}) => {
                             <td>{deliveryMan?.phone}</td>
                             <td>{deliveryMan?.totalBookings}</td>
                             <td>{deliveryMan?.totalSpent}</td>
-                            <td><button className='btn'>Admin</button></td>
-                            <td><button className='btn'>Delivery Man</button></td>
-
+                            
                         </tr>)
                     }
 
