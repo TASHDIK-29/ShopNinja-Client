@@ -6,7 +6,7 @@ const AllParcels = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const {data: parcels=[]} = useQuery({
+    const {data: parcels=[], refetch} = useQuery({
         queryKey: ['parcels'],
         queryFn: async () =>{
             const res = await axiosSecure.get('/parcels');
@@ -17,7 +17,7 @@ const AllParcels = () => {
     return (
         <div>
             Total Parcels = {parcels.length}
-            <AdminAllParcelsTable parcels={parcels}></AdminAllParcelsTable>
+            <AdminAllParcelsTable parcels={parcels} refetch={refetch}></AdminAllParcelsTable>
         </div>
     );
 };

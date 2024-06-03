@@ -3,7 +3,7 @@ import AdminManageParcelModal from "../modals/AdminManageParcelModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const AdminAllParcelsTable = ({ parcels }) => {
+const AdminAllParcelsTable = ({ parcels, refetch }) => {
     console.log('parcels :', parcels);
 
     const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +16,8 @@ const AdminAllParcelsTable = ({ parcels }) => {
 
 
     // Get all parcels
-    const { data: deliveryMans = [] , refetch} = useQuery({
-        queryKey: ['parcel'],
+    const { data: deliveryMans = [] } = useQuery({
+        queryKey: ['deliveryMan'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/deliveryMan`);
 
@@ -39,7 +39,7 @@ const AdminAllParcelsTable = ({ parcels }) => {
             .then(res => {
                 console.log(res.data);
 
-                if(res.data.modifiedCount){
+                if(res.data.modifiedCount > 0){
                     refetch();
                 }
             })
