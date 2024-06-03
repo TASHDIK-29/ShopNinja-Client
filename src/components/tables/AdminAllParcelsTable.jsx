@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AdminManageParcelModal from "../modals/AdminManageParcelModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import useAllDeliveryMan from "../../hooks/useAllDeliveryMan";
 
 const AdminAllParcelsTable = ({ parcels, refetch }) => {
     console.log('parcels :', parcels);
@@ -16,14 +17,16 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
 
 
     // Get all parcels
-    const { data: deliveryMans = [] } = useQuery({
-        queryKey: ['deliveryMan'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/deliveryMan`);
+    // const { data: deliveryMans = [] } = useQuery({
+    //     queryKey: ['deliveryMan'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get(`/deliveryMan`);
 
-            return res.data;
-        }
-    })
+    //         return res.data;
+    //     }
+    // })
+
+    const [deliveryMans] = useAllDeliveryMan();
 
     const handelManage = async (id) => {
         setIsOpen(true);
