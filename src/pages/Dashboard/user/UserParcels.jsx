@@ -9,9 +9,9 @@ const UserParcels = () => {
     const axiosSecure = useAxiosSecure();
 
     const {data: parcels=[]} = useQuery({
-        queryKey: ['parcel'],
+        queryKey: ['parcels'],
         queryFn: async () =>{
-            const res = await axiosSecure.get(`/user/parcel/${user?.email}`);
+            const res = await axiosSecure.get(`/user/parcels/${user?.email}`);
 
             return res.data;
         }

@@ -13,6 +13,7 @@ import DeliveryList from "../pages/Dashboard/deliveryMan/DeliveryList";
 import AllParcels from "../pages/Dashboard/admin/AllParcels";
 import AllUsers from "../pages/Dashboard/admin/AllUsers";
 import AllDeliveryMan from "../pages/Dashboard/admin/AllDeliveryMan";
+import UpdateParcel from "../pages/Dashboard/user/UpdateParcel";
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
         {
           path: 'userProfile',
           element: <UserProfile></UserProfile>
+        },
+        {
+          path: 'update/:id',
+          element: <UpdateParcel></UpdateParcel>
         },
 
         // Delivery Man
