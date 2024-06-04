@@ -20,8 +20,8 @@ const AdminAllDeliveryManTable = ({deliveryMans, refetch}) => {
                             <th>{index + 1}</th>
                             <td>{deliveryMan?.name}</td>
                             <td>{deliveryMan?.phone}</td>
-                            <td>{deliveryMan?.totalBookings}</td>
-                            <td>{deliveryMan?.totalSpent}</td>
+                            <td>{deliveryMan?.totalDelivery}</td>
+                            <td>{deliveryMan?.totalRating / deliveryMan?.totalReview}</td>
                             
                         </tr>)
                     }

@@ -25,7 +25,7 @@ const AdminAllUsersTable = ({ users, refetch }) => {
                             <th>{index + 1}</th>
                             <td>{user?.name}</td>
                             <td>{user?.phone}</td>
-                            <td>{user?.totalBookings}</td>
+                            <td>{user?.totalParcel}</td>
                             <td>{user?.totalSpent}</td>
                             <td><button className='btn'>Admin</button></td>
                             <td><button className='btn'>Delivery Man</button></td>

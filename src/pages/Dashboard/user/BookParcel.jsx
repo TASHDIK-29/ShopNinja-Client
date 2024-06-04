@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const BookParcel = () => {
 
@@ -13,6 +14,7 @@ const BookParcel = () => {
     // console.log(parcel);
 
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     // Send parcel data to server
     useEffect(() => {
@@ -29,7 +31,20 @@ const BookParcel = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+
+
+                        // Update Total Parcel
+                        try {
+                            axiosPublic.put(`/totalParcel/${user?.email}`)
+                            .then(res =>{
+                                console.log(res.data);
+                            })
+                            
+                        } catch (err) {
+                            console.log(err);
+                        }
                     }
+
                 })
         }
     }, [parcel])
