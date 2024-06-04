@@ -16,7 +16,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, cancel it!"
+            confirmButtonText: `Yes, ${status} it!`
         }).then(async (result) => {
             if (result.isConfirmed) {
 
@@ -28,8 +28,8 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                     refetch();
 
                     Swal.fire({
-                        title: "Canceled!",
-                        text: "Your canceled the parcel.",
+                        title: `${status}!`,
+                        text: `You ${status} the parcel.`,
                         icon: "success"
                     });
 
@@ -91,7 +91,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                 {
                                     parcel?.status === 'On The Way' ?
                                         <button
-                                            // onClick={() => handelParcelCancel(parcel._id)}
+                                            onClick={() => handelParcelCancel(parcel._id, 'Delivered')}
                                             className="btn">Delivered</button>
                                         : <button disabled className="btn cursor-not-allowed">Delivered</button>
                                 }
