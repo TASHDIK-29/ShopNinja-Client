@@ -6,11 +6,13 @@ import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LocationModal from "../modals/LocationModal";
+import { useState } from "react";
 
 
 const DeliveryListTable = ({ deliveryList, refetch }) => {
 
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
@@ -44,12 +46,12 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                     });
 
 
-                    if(status === 'Delivered'){
-                        try{
+                    if (status === 'Delivered') {
+                        try {
                             const res = await axiosPublic.put(`/deliveryCount/${user?.email}`)
 
                             console.log('Delivery count', res.data);
-                        }catch(err){
+                        } catch (err) {
                             console.log(err);
                         }
                     }
@@ -63,6 +65,18 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
 
 
 
+    }
+
+
+    // Review 
+    const [isOpen, setIsOpen] = useState(false);
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
+
+    const handelLocation = (lat, long) =>{
+        setLatitude(lat);
+        setLongitude(long);
+        setIsOpen(true);
     }
 
 
@@ -98,7 +112,12 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.approxDeliveryDate}</td>
                             <td>{parcel?.status}</td>
-                            <td><button ><MdOutlineLocationOn className="text-xl" /></button></td>
+                            <td><button
+                            onClick={() => handelLocation(parcel.latitude, parcel.longitude)}
+                            >
+                                    <MdOutlineLocationOn className="text-xl" />
+                                </button>
+                            </td>
                             <td>
                                 {
                                     parcel?.status === 'On The Way' ?
@@ -122,6 +141,10 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
 
                 </tbody>
             </table>
+
+            {
+                isOpen && <LocationModal setIsOpen={setIsOpen} latitude={latitude} longitude={longitude} ></LocationModal>
+            }
         </div>
     );
 };
