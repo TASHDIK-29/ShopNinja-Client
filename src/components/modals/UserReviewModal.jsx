@@ -1,4 +1,5 @@
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UserReviewModal = ({ setIsOpen, id }) => {
@@ -6,6 +7,7 @@ const UserReviewModal = ({ setIsOpen, id }) => {
     const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
 
     const handleSubmit = async e => {
@@ -31,6 +33,16 @@ const UserReviewModal = ({ setIsOpen, id }) => {
         // Save Review to DB
         const res = await axiosSecure.post('/review', review);
         console.log(res.data);
+
+        if(res.data.insertedId){
+            try{
+                const res = await axiosPublic.put(`/totalReview/${deliveryManId}?rating=${rating}`)
+
+                console.log(res.data);
+            }catch(err){
+                console.log(err);
+            }
+        }
 
         setIsOpen(false);
     }

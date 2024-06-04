@@ -3,13 +3,19 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { MdCancelPresentation } from "react-icons/md";
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const DeliveryListTable = ({ deliveryList, refetch }) => {
 
-    const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
 
-    const handelParcelCancel = async (id, status) => {
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+
+    const handelParcel = async (id, status) => {
         console.log('id', id);
 
 
@@ -36,6 +42,17 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                         text: `You ${status} the parcel.`,
                         icon: "success"
                     });
+
+
+                    if(status === 'Delivered'){
+                        try{
+                            const res = await axiosPublic.put(`/deliveryCount/${user?.email}`)
+
+                            console.log('Delivery count', res.data);
+                        }catch(err){
+                            console.log(err);
+                        }
+                    }
 
                 }
 
@@ -86,7 +103,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                 {
                                     parcel?.status === 'On The Way' ?
                                         <button
-                                            onClick={() => handelParcelCancel(parcel._id, 'Canceled')}
+                                            onClick={() => handelParcel(parcel._id, 'Canceled')}
                                             className=""><MdCancelPresentation className="text-xl" /></button>
                                         : <button disabled className=" cursor-not-allowed"><MdCancelPresentation className="text-xl" /></button>
                                 }
@@ -95,7 +112,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                 {
                                     parcel?.status === 'On The Way' ?
                                         <button
-                                            onClick={() => handelParcelCancel(parcel._id, 'Delivered')}
+                                            onClick={() => handelParcel(parcel._id, 'Delivered')}
                                             className=""><AiOutlineDeliveredProcedure className="text-xl" /></button>
                                         : <button disabled className=" cursor-not-allowed"><AiOutlineDeliveredProcedure className="text-xl" /></button>
                                 }
