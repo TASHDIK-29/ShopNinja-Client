@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ParcelUpdateForm from "../../../components/forms/ParcelUpdateForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const UpdateParcel = () => {
 
@@ -24,10 +25,31 @@ const UpdateParcel = () => {
 
     console.log('single : ',parcel);
 
+
+    // Update parcel data 
+    // useEffect(() => {
+    //     if (parcel.parcelWeight > 0) {
+    //         axiosSecure.patch(`/parcels/${id}`, updateParcel)
+    //             .then(res => {
+    //                 console.log(res.data);
+
+    //                 if (res.data.modifiedCount) {
+    //                     Swal.fire({
+    //                         position: "top-center",
+    //                         icon: "success",
+    //                         title: "Parcel updated successfully. Please wait for admin approval",
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                     });
+    //                 }
+    //             })
+    //     }
+    // }, [updateParcel])
+
     return (
         <div>
             update now
-            <ParcelUpdateForm parcel={parcel} setUpdateParcel={setUpdateParcel}></ParcelUpdateForm>
+            <ParcelUpdateForm parcel={parcel} setUpdateParcel={setUpdateParcel} id={id}></ParcelUpdateForm>
         </div>
     );
 };

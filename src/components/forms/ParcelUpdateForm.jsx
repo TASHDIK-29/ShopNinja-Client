@@ -3,18 +3,23 @@ import useAuth from "../../hooks/useAuth";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
-const ParcelUpdateForm = ({parcel, setUpdateParcel}) => {
+const ParcelUpdateForm = ({ parcel, setUpdateParcel, id }) => {
+
+    const axiosSecure = useAxiosSecure();
 
     const { user } = useAuth();
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(parcel?.deliveryDate);
+
 
     const [weight, setWeight] = useState(parcel?.parcelWeight);
     const [price, setPrice] = useState(parcel?.price);
 
-    useEffect( () =>{
+    useEffect(() => {
 
         if (weight === 0) {
             setPrice(0);
@@ -48,8 +53,9 @@ const ParcelUpdateForm = ({parcel, setUpdateParcel}) => {
         const latitude = parseFloat(form.latitude.value);
         const longitude = parseFloat(form.longitude.value);
 
-        
-        const parcel = {
+        console.log('startDate', startDate);
+
+        const updatedParcel = {
             userName,
             email,
             userPhone,
@@ -66,20 +72,38 @@ const ParcelUpdateForm = ({parcel, setUpdateParcel}) => {
             status: 'pending'
         }
 
-        console.log(parcel);
+        console.log(updatedParcel);
 
-        setUpdateParcel(parcel);
+        // setUpdateParcel(updatedParcel);
 
-        
+        // Update 
+
+        if (parcelWeight > 0) {
+            axiosSecure.patch(`/parcels/${id}`, updatedParcel)
+                .then(res => {
+                    console.log(res.data);
+
+                    if (res.data.modifiedCount) {
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Parcel updated successfully. Please wait for admin approval",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+                })
+        }
+
 
     }
 
 
     const handelPrice = e => {
         setWeight(parseFloat(e.target.value))
-        
+
     }
-    console.log('weight = ',weight, 'price = ',price);
+    console.log('weight = ', weight, 'price = ', price);
 
 
 
@@ -148,7 +172,10 @@ const ParcelUpdateForm = ({parcel, setUpdateParcel}) => {
                             type="text"
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                         /> */}
-                        <DatePicker name="deliveryDate" className="p-2 w-full rounded-md border border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={parcel?.deliveryDate ? parcel?.deliveryDate : startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker name="deliveryDate" className="p-2 w-full rounded-md border border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" 
+                        // defaultValue={parcel?.deliveryDate}
+                        selected={startDate} 
+                        onChange={(date) => setStartDate(date)} />
                     </div>
 
                     <div>
