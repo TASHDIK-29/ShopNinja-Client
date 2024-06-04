@@ -5,11 +5,15 @@ import { BsStripe } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import UserReviewModal from "../modals/UserReviewModal";
 
 
 
 const UserParcelsTable = ({ parcels, refetch }) => {
     console.log(parcels);
+
+    
 
     const axiosSecure = useAxiosSecure();
 
@@ -25,7 +29,7 @@ const UserParcelsTable = ({ parcels, refetch }) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, cancel it!"
-        }).then(async(result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
 
                 const res = await axiosSecure.patch(`/parcel/cancel/${id}?status=${status}`)
@@ -34,22 +38,33 @@ const UserParcelsTable = ({ parcels, refetch }) => {
 
                 if (res.data.modifiedCount) {
                     refetch();
-                    
+
                     Swal.fire({
                         title: "Canceled!",
                         text: "Your parcel has been canceled.",
                         icon: "success"
                     });
-                    
+
                 }
 
-                
+
             }
         });
 
-        
 
-        
+
+
+    }
+
+
+
+    // Review 
+    const [isOpen, setIsOpen] = useState(false);
+    const [id, setId] = useState('');
+
+    const handelReview = deliveryManId =>{
+        setId(deliveryManId);
+        setIsOpen(true);
     }
 
 
@@ -103,15 +118,17 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                                 </button>
                             </td>
                             <td>
-                                <button disabled={parcel?.status != 'delivered'}>
+                                <button 
+                                onClick={() => handelReview(parcel?.deliveryManId)}
+                                disabled={parcel?.status != 'Delivered'}>
                                     <MdReviews
-                                        className={`text-lg ${parcel?.status != 'delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
+                                        className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                 </button>
                             </td>
                             <td>
-                                <button disabled={parcel?.status != 'delivered'}>
+                                <button disabled={parcel?.status != 'Delivered'}>
                                     <BsStripe
-                                        className={`text-lg ${parcel?.status != 'delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
+                                        className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                 </button>
                             </td>
                         </tr>)
@@ -119,6 +136,11 @@ const UserParcelsTable = ({ parcels, refetch }) => {
 
                 </tbody>
             </table>
+
+
+            {
+                isOpen && <UserReviewModal setIsOpen={setIsOpen} id={id}></UserReviewModal>
+            }
         </div>
     );
 };

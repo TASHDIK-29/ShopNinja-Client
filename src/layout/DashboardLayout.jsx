@@ -35,6 +35,7 @@ const Dashboard = () => {
                             </>
                                 : <>
                                     <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/deliveryList'>My Delivery List</NavLink></li>
+                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allReviews'>My Reviews</NavLink></li>
                                 </>
                     }
                 </ul>

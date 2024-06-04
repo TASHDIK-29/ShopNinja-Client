@@ -1,5 +1,9 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { MdCancelPresentation } from "react-icons/md";
+import { AiOutlineDeliveredProcedure } from "react-icons/ai";
+
 
 const DeliveryListTable = ({ deliveryList, refetch }) => {
 
@@ -77,14 +81,14 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.approxDeliveryDate}</td>
                             <td>{parcel?.status}</td>
-                            <td><button className="btn">View</button></td>
+                            <td><button ><MdOutlineLocationOn className="text-xl" /></button></td>
                             <td>
                                 {
                                     parcel?.status === 'On The Way' ?
                                         <button
                                             onClick={() => handelParcelCancel(parcel._id, 'Canceled')}
-                                            className="btn">Cancel</button>
-                                        : <button disabled className="btn cursor-not-allowed">Cancel</button>
+                                            className=""><MdCancelPresentation className="text-xl" /></button>
+                                        : <button disabled className=" cursor-not-allowed"><MdCancelPresentation className="text-xl" /></button>
                                 }
                             </td>
                             <td>
@@ -92,8 +96,8 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                     parcel?.status === 'On The Way' ?
                                         <button
                                             onClick={() => handelParcelCancel(parcel._id, 'Delivered')}
-                                            className="btn">Delivered</button>
-                                        : <button disabled className="btn cursor-not-allowed">Delivered</button>
+                                            className=""><AiOutlineDeliveredProcedure className="text-xl" /></button>
+                                        : <button disabled className=" cursor-not-allowed"><AiOutlineDeliveredProcedure className="text-xl" /></button>
                                 }
                             </td>
                         </tr>)
