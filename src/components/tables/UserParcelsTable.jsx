@@ -3,11 +3,56 @@ import { GrDocumentUpdate } from "react-icons/gr";
 import { MdReviews } from "react-icons/md";
 import { BsStripe } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 
-const UserParcelsTable = ({ parcels }) => {
+const UserParcelsTable = ({ parcels, refetch }) => {
     console.log(parcels);
+
+    const axiosSecure = useAxiosSecure();
+
+    const handelParcelCancel = async (id, status) => {
+        console.log('id', id);
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosSecure.patch(`/parcel/cancel/${id}?status=${status}`)
+
+                console.log(res.data);
+
+                if (res.data.modifiedCount) {
+                    refetch();
+                    
+                    Swal.fire({
+                        title: "Canceled!",
+                        text: "Your parcel has been canceled.",
+                        icon: "success"
+                    });
+                    
+                }
+
+                
+            }
+        });
+
+        
+
+        
+    }
+
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -52,7 +97,7 @@ const UserParcelsTable = ({ parcels }) => {
                                 }
                             </td>
                             <td>
-                                <button disabled={parcel?.status != 'pending'}>
+                                <button onClick={() => handelParcelCancel(parcel?._id, 'Canceled')} disabled={parcel?.status != 'pending'}>
                                     <ImCancelCircle
                                         className={`text-lg ${parcel?.status != 'pending' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                 </button>

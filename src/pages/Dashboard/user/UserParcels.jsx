@@ -8,7 +8,7 @@ const UserParcels = () => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const {data: parcels=[]} = useQuery({
+    const {data: parcels=[], refetch} = useQuery({
         queryKey: ['parcels'],
         queryFn: async () =>{
             const res = await axiosSecure.get(`/user/parcels/${user?.email}`);
@@ -22,7 +22,7 @@ const UserParcels = () => {
     return (
         <div>
             my parcels
-            <UserParcelsTable parcels={parcels}></UserParcelsTable>
+            <UserParcelsTable parcels={parcels} refetch={refetch}></UserParcelsTable>
         </div>
     );
 };

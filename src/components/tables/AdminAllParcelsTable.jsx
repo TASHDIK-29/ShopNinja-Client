@@ -42,7 +42,7 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
             .then(res => {
                 console.log(res.data);
 
-                if(res.data.modifiedCount > 0){
+                if (res.data.modifiedCount > 0) {
                     refetch();
                 }
             })
@@ -74,12 +74,22 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
                             <td>{parcel?.price}</td>
                             <td>{parcel?.status}</td>
                             <td>
-                                <button
-                                    onClick={() => handelManage(parcel?._id)}
-                                    className="px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-                                >
-                                    Manage
-                                </button>
+                                {
+                                    parcel?.status === 'pending' ? <button
+
+                                        onClick={() => handelManage(parcel?._id)}
+                                        className="px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                                    >
+                                        Manage
+                                    </button>
+                                        : <button
+                                            disabled={parcel?.status != 'pending'}
+                                            
+                                            className="cursor-not-allowed px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                                        >
+                                            Manage
+                                        </button>
+                                }
                             </td>
                         </tr>)
                     }
