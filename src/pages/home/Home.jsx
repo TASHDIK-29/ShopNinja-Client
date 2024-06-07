@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "./banner/Banner";
 import Features from "./features/Features";
+import TopDeliveryMan from "./topDeliveryMan/TopDeliveryMan";
+import Footer from "./footer/Footer";
 
 const Home = () => {
     return (
@@ -10,6 +12,8 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <Features></Features>
+            <TopDeliveryMan></TopDeliveryMan>
+            <Footer></Footer>
         </div>
     );
 };
