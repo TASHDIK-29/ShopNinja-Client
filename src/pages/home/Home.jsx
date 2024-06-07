@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Banner from "./banner/Banner";
 
 const Home = () => {
     return (
@@ -6,7 +7,7 @@ const Home = () => {
             <Helmet>
                 <title>Home || Ship Ninja</title>
             </Helmet>
-            home
+            <Banner></Banner>
         </div>
     );
 };

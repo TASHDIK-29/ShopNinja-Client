@@ -38,9 +38,9 @@ const AllUsers = () => {
         <div className="relative h-screen ">
             Total users = {users.length}
             <AdminAllUsersTable users={users} refetch={refetch}></AdminAllUsersTable>
-            <div className="space-x-2 absolute bottom-5 border w-full flex justify-center">
+            <div className="space-x-2 absolute bottom-5 w-full flex justify-center">
                 {
-                    pages.map(i => <button className={currentPage === i ? 'bg-blue-500 px-3 py-2 rounded-md  ' : 'px-3 py-2 rounded-md border border-gray-400'} onClick={() => setCurrentPage(i)} key={i}>{i}</button>)
+                    pages.map(i => <button className={currentPage === i ? 'bg-blue-500 px-3 py-1 rounded-full  ' : 'px-3 py-1 rounded-full border border-gray-400'} onClick={() => setCurrentPage(i)} key={i}>{i}</button>)
                 }
             </div>
         </div>
