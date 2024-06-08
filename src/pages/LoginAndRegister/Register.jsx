@@ -5,12 +5,17 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { FaClipboardUser } from "react-icons/fa6";
-import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+// import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { imageUpload } from "../../utils/imageURL";
+import { useState } from "react";
 
 const Register = () => {
+
+    const [imagePreview, setImagePreview] = useState();
+    const [img, setImg] = useState(null);
 
     const axiosPublic = useAxiosPublic();
 
@@ -24,55 +29,72 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data)
 
-        createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log('User registered', user);
+        // console.log('Photo = ', data.photo[0]);
+
+        // const image = data.photo[0];
+
+        const imageURL = await imageUpload(img)
+
+        console.log('URL = ', imageURL);
+
+        if (imageURL) {
+            createUser(data.email, data.password)
+                .then(result => {
+                    const user = result.user;
+                    console.log('User registered', user);
 
 
 
-                updateUserProfile(data.name, data.photoURL)
-                    .then(() => {
-                        // Post User data to DB
-                        const userInfo = {
-                            name: data.name,
-                            email: data.email,
-                            role: data.type,
-                            image: data.photoURL,
-                            phone: data.phone
-                        }
-                        axiosPublic.post('/users', userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
+                    updateUserProfile(data.name, imageURL)
+                        .then(() => {
+                            // Post User data to DB
+                            const userInfo = {
+                                name: data.name,
+                                email: data.email,
+                                role: data.type,
+                                image: imageURL,
+                                phone: data.phone
+                            }
+                            axiosPublic.post('/users', userInfo)
+                                .then(res => {
+                                    if (res.data.insertedId) {
 
-                                    console.log('user added to the db');
+                                        console.log('user added to the db');
 
-                                    Swal.fire({
-                                        position: "top-center",
-                                        icon: "success",
-                                        title: "You have successfully create an account",
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
+                                        Swal.fire({
+                                            position: "top-center",
+                                            icon: "success",
+                                            title: "You have successfully create an account",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
 
-                                    // navigate('/');
-                                }
-                            })
+                                        // navigate('/');
+                                    }
+                                })
 
-                        logoutUser();
-                        navigate('/login');  // initial 
-                    })
-                    .catch(err => console.log(err))
+                            logoutUser();
+                            navigate('/login');  // initial 
+                        })
+                        .catch(err => console.log(err))
 
 
-            })
-            .then(err => {
-                console.log(err);
-            })
+                })
+                .then(err => {
+                    console.log(err);
+                })
+        }
     }
+
+    const handelImage = image => {
+        setImg(image);
+        setImagePreview(URL.createObjectURL(image));
+        // setImageText(image.name);
+    }
+
 
 
     return (
@@ -87,7 +109,7 @@ const Register = () => {
                     </div>
 
                     <div className="flex items-center justify-center mt-6">
-                        
+
 
                         <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400">
                             sign up
@@ -106,15 +128,49 @@ const Register = () => {
                     {errors.name && <span className="text-red-600 font-bold">Name is required</span>}
 
                     <div className="relative flex items-center mt-8">
-                        <span className="absolute">
+                        {/* <span className="absolute">
                             <MdOutlineAddPhotoAlternate className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
                         </span>
-                        <input type="text" {...register("photoURL", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="PhotoURL" />
+                        <input type="file" {...register("photo", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 " placeholder="Upload Photo" /> */}
 
+
+                        {/* ******** */}
+                        <label
+                            htmlFor="dropzone-file"
+                            className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer  dark:border-gray-700 rounded-xl"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-8 h-8 text-gray-500 dark:text-gray-400"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                                />
+                            </svg>
+
+                            <h2 className="mt-1 font-medium tracking-wide text-gray-700 ">Upload Image</h2>
+                            <input
+                                id="dropzone-file"
+                                {...register("photo", { required: true })}
+                                type="file"
+                                // name='image'
+                                onChange={(e) => handelImage(e.target.files[0])}
+                                accept="image/*"
+                                className="hidden" />
+                        </label>
+                        <div className="w-24 object-cover overflow-hidden flex items-center">
+                            {imagePreview && <img src={imagePreview} />}
+                        </div>
                     </div>
-                    {errors.photoURL && <span className="text-red-600 font-bold">Photo URL is required</span>}
+                    {errors.photo && <span className="text-red-600 font-bold">Photo URL is required</span>}
 
-                    
+
                     {/* User type */}
                     <div className="relative flex items-center mt-6">
                         <span className="absolute">

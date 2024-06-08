@@ -79,6 +79,9 @@ const Nav = () => {
                         {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
+                        {!role && <Link to='/login' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                            Dashboard
+                        </Link>}
                         <MdEditNotifications />
                     </div>
 

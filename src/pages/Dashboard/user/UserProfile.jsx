@@ -24,7 +24,7 @@ const UserProfile = () => {
 
     // Image Update
     const handelImage = async (image) => {
-        console.log(image);
+        console.log('Image =', image);
 
         const imageURL = await imageUpload(image)
 
