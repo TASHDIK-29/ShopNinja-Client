@@ -13,7 +13,7 @@ const Dashboard = () => {
     // const [isAdmin] = useAdmin();
     // console.log('from dashboard', isAdmin);
 
-    const role = useUserRole();
+    const [role] = useUserRole();
     console.log('Role = ',role);
 
     return (

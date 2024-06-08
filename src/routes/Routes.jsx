@@ -15,6 +15,10 @@ import AllUsers from "../pages/Dashboard/admin/AllUsers";
 import AllDeliveryMan from "../pages/Dashboard/admin/AllDeliveryMan";
 import UpdateParcel from "../pages/Dashboard/user/UpdateParcel";
 import AllReviews from "../pages/Dashboard/deliveryMan/AllReviews";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import UserRoute from "./UserRoute";
+import DeliverymanRoute from "./DeliverymanRoute";
 
 export const router = createBrowserRouter([
     {
@@ -37,52 +41,52 @@ export const router = createBrowserRouter([
     },
     {
       path: 'dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         // Admin
         {
           path: 'adminHome',
-          element: <AdminHome></AdminHome>
+          element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
         },
         {
           path: 'allParcels',
-          element: <AllParcels></AllParcels>
+          element: <AdminRoute><AllParcels></AllParcels></AdminRoute>
         },
         {
           path: 'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
         {
           path: 'allDeliveryMans',
-          element: <AllDeliveryMan></AllDeliveryMan>
+          element: <AdminRoute><AllDeliveryMan></AllDeliveryMan></AdminRoute>
         },
 
         // User
         {
           path: 'userParcel',
-          element: <UserParcels></UserParcels>
+          element: <UserRoute><UserParcels></UserParcels></UserRoute>
         },
         {
           path: 'bookParcel',
-          element: <BookParcel></BookParcel>
+          element: <UserRoute><BookParcel></BookParcel></UserRoute>
         },
         {
           path: 'userProfile',
-          element: <UserProfile></UserProfile>
+          element: <UserRoute><UserProfile></UserProfile></UserRoute>
         },
         {
           path: 'update/:id',
-          element: <UpdateParcel></UpdateParcel>
+          element: <UserRoute><UpdateParcel></UpdateParcel></UserRoute>
         },
 
         // Delivery Man
         {
           path: 'deliveryList',
-          element: <DeliveryList></DeliveryList>
+          element: <DeliverymanRoute><DeliveryList></DeliveryList></DeliverymanRoute>
         },
         {
           path: 'allReviews',
-          element: <AllReviews></AllReviews>
+          element: <DeliverymanRoute><AllReviews></AllReviews></DeliverymanRoute>
         },
       ]
     }

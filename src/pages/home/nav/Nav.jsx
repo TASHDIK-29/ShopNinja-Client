@@ -25,8 +25,8 @@ const Nav = () => {
 
     // Role
 
-    const role = useUserRole();
-
+    const [role] = useUserRole();
+    console.log('role', role);
 
 
 
