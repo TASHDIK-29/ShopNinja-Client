@@ -18,6 +18,14 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
     // console.log(from);
 
+    if (location.state?.from?.pathname) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You have to login first!",
+        });
+    }
+
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])

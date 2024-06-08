@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
 import { MdEditNotifications } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
+import Swal from "sweetalert2";
 
 const Nav = () => {
 
@@ -28,7 +29,14 @@ const Nav = () => {
     const [role] = useUserRole();
     console.log('role', role);
 
-
+    // If User not logged in
+    const handelDashboard = () =>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You need to be logged in!",
+          });
+    }
 
 
     return (
@@ -79,9 +87,12 @@ const Nav = () => {
                         {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
-                        {!role && <Link to='/login' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {/* {!role && <Link to='/login' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
-                        </Link>}
+                        </Link>} */}
+                        {!role && <button onClick={handelDashboard} className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                            Dashboard
+                        </button>}
                         <MdEditNotifications />
                     </div>
 

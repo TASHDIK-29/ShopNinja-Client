@@ -5,7 +5,6 @@ import Login from "../pages/LoginAndRegister/Login";
 import Register from "../pages/LoginAndRegister/Register";
 import Dashboard from "../layout/DashboardLayout";
 import AdminHome from "../pages/Dashboard/admin/AdminHome";
-import DeliveryMan from "../pages/Dashboard/deliveryMan/DeliveryMan";
 import BookParcel from "../pages/Dashboard/user/BookParcel";
 import UserParcels from "../pages/Dashboard/user/UserParcels";
 import UserProfile from "../pages/Dashboard/user/UserProfile";
@@ -19,6 +18,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import DeliverymanRoute from "./DeliverymanRoute";
+import Payment from "../pages/Dashboard/payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -77,6 +77,10 @@ export const router = createBrowserRouter([
         {
           path: 'update/:id',
           element: <UserRoute><UpdateParcel></UpdateParcel></UserRoute>
+        },
+        {
+          path: 'payment/:id',
+          element: <UserRoute><Payment></Payment></UserRoute>
         },
 
         // Delivery Man

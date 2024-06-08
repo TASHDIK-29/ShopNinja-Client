@@ -13,7 +13,7 @@ import UserReviewModal from "../modals/UserReviewModal";
 const UserParcelsTable = ({ parcels, refetch }) => {
     console.log(parcels);
 
-    
+
 
     const axiosSecure = useAxiosSecure();
 
@@ -62,7 +62,7 @@ const UserParcelsTable = ({ parcels, refetch }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState('');
 
-    const handelReview = deliveryManId =>{
+    const handelReview = deliveryManId => {
         setId(deliveryManId);
         setIsOpen(true);
     }
@@ -118,18 +118,20 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                                 </button>
                             </td>
                             <td>
-                                <button 
-                                onClick={() => handelReview(parcel?.deliveryManId)}
-                                disabled={parcel?.status != 'Delivered'}>
+                                <button
+                                    onClick={() => handelReview(parcel?.deliveryManId)}
+                                    disabled={parcel?.status != 'Delivered'}>
                                     <MdReviews
                                         className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                 </button>
                             </td>
                             <td>
-                                <button disabled={parcel?.status != 'Delivered'}>
-                                    <BsStripe
-                                        className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
-                                </button>
+                                <Link to = {`/dashboard/payment/${parcel._id}`}>
+                                    <button disabled={parcel?.status != 'Delivered'}>
+                                        <BsStripe
+                                            className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
+                                    </button>
+                                </Link>
                             </td>
                         </tr>)
                     }
