@@ -2,9 +2,11 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CheckoutForm = () => {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -112,6 +114,8 @@ const CheckoutForm = () => {
                 console.log('Put user = ',resUserPut.data);
                 const resParcelPut = await axiosSecure.put(`/payments/parcel/${id}`);
                 console.log('Put parcel = ',resParcelPut.data);
+
+                navigate('/dashboard/paymentSuccess');
             }
         }
     }

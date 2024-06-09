@@ -80,6 +80,9 @@ const UserProfile = () => {
                                 <li className="flex items-start justify-between">
                                     <h3>Email : {userInfo?.email}</h3>
                                 </li>
+                                <li className="flex items-start justify-between">
+                                    <h3>Phone : {userInfo?.phone}</h3>
+                                </li>
                             </ul>
                             <div className="pt-4 space-y-2">
                                 <li className="flex items-start justify-between">
@@ -91,12 +94,13 @@ const UserProfile = () => {
                             </div>
                             <div className="pt-4 space-y-2">
                                 <li className="flex items-start justify-between">
-                                    <h3>Created Account : {user?.metadata?.creationTime}</h3>
+                                    <h3>Total Parcel : <span className="uppercase">{userInfo?.totalParcel}</span></h3>
                                 </li>
                                 <li className="flex items-start justify-between">
-                                    <h3>Last Login : {user?.metadata?.lastSignInTime}</h3>
+                                    <h3>Total Spent : ${userInfo?.totalSpent}</h3>
                                 </li>
                             </div>
+                            
                             <div className="pt-4 space-y-2">
                                 <div className="space-y-6">
 

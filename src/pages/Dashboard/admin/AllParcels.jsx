@@ -46,16 +46,16 @@ const AllParcels = () => {
     return (
         <div>
             <SectionHeading heading={'All The Parcels'}></SectionHeading>
-            <form onSubmit={handelSearch} className="">
-                <div className="grid grid-cols-4 gap-4">
-                    <div className="flex flex-col space-y-2">
-                        <label className="text-gray-700 " htmlFor="username">Delivery Date</label>
+            <form onSubmit={handelSearch} className=" my-5">
+                <div className="grid grid-cols-12 gap-4">
+                    <div className="col-start-6 col-span-3 flex flex-col space-y-2">
+                        <label className="text-gray-700 " htmlFor="username">From</label>
 
                         <DatePicker name="fromDate" className="p-2 w-full rounded-md border border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
 
-                    <div className="flex flex-col space-y-2">
-                        <label className="text-gray-700 " htmlFor="username">Delivery Date</label>
+                    <div className="col-span-3 flex flex-col space-y-2">
+                        <label className="text-gray-700 " htmlFor="username">To</label>
 
                         <DatePicker name="toDate" className="p-2 w-full rounded-md border border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={endDate} onChange={(date) => setEndDate(date)} />
                     </div>

@@ -36,7 +36,7 @@ const UserParcels = () => {
                     {/* Dropdown toggle button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
+                        className="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-blue-400 focus:outline-none"
                     >
                         <span className="mx-1">Filter By</span>
                         <svg className="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@ const UserParcels = () => {
                     {isOpen && (
                         <div
                             onClick={() => setIsOpen(false)}
-                            className="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+                            className="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl "
                             style={{
                                 transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
                                 opacity: isOpen ? 1 : 0,
@@ -57,24 +57,22 @@ const UserParcels = () => {
                         >
 
 
-                            <hr className="border-gray-200 dark:border-gray-700" />
 
-                            <button onClick={() => setStatus('pending')} className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <button onClick={() => setStatus('pending')} className="w-full block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform  hover:bg-gray-100 dark:hover:bg-blue-400 dark:hover:text-white">
                                 Pending
                             </button>
 
-                            <button onClick={() => setStatus('On The Way')} className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <button onClick={() => setStatus('On The Way')} className="w-full block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform  hover:bg-gray-100 dark:hover:bg-blue-400 dark:hover:text-white">
                                 On The Way
                             </button>
 
-                            <button onClick={() => setStatus('Canceled')} className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <button onClick={() => setStatus('Canceled')} className="w-full block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform  hover:bg-gray-100 dark:hover:bg-blue-400 dark:hover:text-white">
                                 Canceled
                             </button>
-                            <button onClick={() => setStatus('Delivered')} className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <button onClick={() => setStatus('Delivered')} className="w-full block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform  hover:bg-gray-100 dark:hover:bg-blue-400 dark:hover:text-white">
                                 Delivered
                             </button>
 
-                            <hr className="border-gray-200 dark:border-gray-700" />
 
 
 

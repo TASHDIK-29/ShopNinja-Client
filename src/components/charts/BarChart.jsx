@@ -20,7 +20,7 @@ const BarChart = () => {
     }]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/barChart')
+        fetch('https://assignment-12-server-sand-delta.vercel.app/barChart')
             .then(response => response.json())
             .then(data => {
                 console.log('data = ',data);
@@ -45,7 +45,7 @@ const BarChart = () => {
 
     return (
         <div>
-            <Chart options={options} series={series} type="bar" width={500} height={320} />
+            <Chart options={options} series={series} type="bar" width={800} height={350} />
         </div>
     );
 };

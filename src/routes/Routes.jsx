@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import DeliverymanRoute from "./DeliverymanRoute";
 import Payment from "../pages/Dashboard/payment/Payment";
+import PaymentSuccess from "../pages/Dashboard/payment/PaymentSuccess";
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         {
           path: 'payment/:id',
           element: <UserRoute><Payment></Payment></UserRoute>
+        },
+        {
+          path: 'paymentSuccess',
+          element: <UserRoute><PaymentSuccess></PaymentSuccess></UserRoute>
         },
 
         // Delivery Man

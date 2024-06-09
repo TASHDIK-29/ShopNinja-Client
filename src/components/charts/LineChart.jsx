@@ -28,7 +28,7 @@ const LineChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/lineChart');
+                const response = await fetch('https://assignment-12-server-sand-delta.vercel.app/lineChart');
                 // if (!response.ok) {
                 //   throw new Error(`HTTP error! Status: ${response.status}`);
                 // }
@@ -85,7 +85,7 @@ const LineChart = () => {
     return (
         <div>
             {options.xaxis.categories.length > 0 ? (
-                <Chart options={options} series={series} type="line" width={500} height={320} />
+                <Chart options={options} series={series} type="line" width={800} height={350} />
             ) : (
                 <p>Loading data...</p>
             )}

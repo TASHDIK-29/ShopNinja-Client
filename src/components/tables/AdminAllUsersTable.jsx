@@ -63,12 +63,12 @@ const AdminAllUsersTable = ({ users, refetch }) => {
                             <td>{user?.totalParcel}</td>
                             <td>{user?.totalSpent}</td>
                             <td>
-                                <button onClick={() => handelRole(user, 'admin')} className='btn'>
+                                <button onClick={() => handelRole(user, 'admin')} className='text-xl text-orange-400'>
                                     <RiAdminFill />
                                 </button>
                             </td>
                             <td>
-                                <button onClick={() => handelRole(user, 'deliveryMan')} className='btn'>
+                                <button onClick={() => handelRole(user, 'deliveryMan')} className='text-xl text-orange-400'>
                                     <GrUserWorker />
                                 </button>
                             </td>

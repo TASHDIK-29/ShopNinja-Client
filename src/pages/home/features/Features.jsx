@@ -9,12 +9,13 @@ const Features = () => {
                 <div className="lg:flex lg:items-center">
                     <div className="w-full space-y-12 lg:w-1/2 ">
                         <div>
-                            <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ">explore our <br /> awesome Features</h1>
+                            <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl text-gradient">explore our <br /> awesome Features</h1>
 
                             <div className="mt-2">
-                                <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
-                                <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
-                                <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+                                <span className="inline-block w-28 h-1 bg-blue-500 rounded-full"></span>
+                                <span className="inline-block w-12 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                                <span className="inline-block w-3 h-1 ml-1 bg-orange-500 rounded-full"></span>
+                                <span className="inline-block w-1 h-1 ml-1 bg-orange-500 rounded-full"></span>
                             </div>
                         </div>
 

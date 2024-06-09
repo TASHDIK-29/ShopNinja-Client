@@ -100,21 +100,22 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                                 {parcel?.deliveryManId ? '***' : ''}
                                 {parcel?.deliveryManId ? parcel.deliveryManId.slice(20, parcel.deliveryManId.length) : ''}
                             </td>
-                            <td className="uppercase">{parcel?.status}</td>
+                            {/* <td className="capitalize">{parcel?.status}</td> */}
+                            <td><span className={`${parcel?.status === 'pending' ? 'border border-yellow-400 text-yellow-300' : parcel?.status === 'Delivered' ? 'border border-green-400 text-green-400' : parcel?.status === 'On The Way' ? 'border border-blue-400 text-blue-400' : parcel?.status === 'Canceled' ? 'border border-red-400 text-red-400' : ''} px-2 py-1 rounded-md font-semibold capitalize`}>{parcel?.status}</span></td>
                             <td>
                                 {parcel?.status != 'pending' ?
                                     <button disabled className="cursor-not-allowed">
-                                        <GrDocumentUpdate className="text-lg" />
+                                        <GrDocumentUpdate className="text-lg text-green-600" />
                                     </button>
                                     : <Link to={`/dashboard/update/${parcel?._id}`}>
-                                        <GrDocumentUpdate className="text-lg" />
+                                        <GrDocumentUpdate className="text-lg text-green-600" />
                                     </Link>
                                 }
                             </td>
                             <td>
                                 <button onClick={() => handelParcelCancel(parcel?._id, 'Canceled')} disabled={parcel?.status != 'pending'}>
                                     <ImCancelCircle
-                                        className={`text-lg ${parcel?.status != 'pending' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
+                                        className={`text-lg ${parcel?.status != 'pending' ? 'cursor-not-allowed' : 'cursor-pointer'} text-red-500`} />
                                 </button>
                             </td>
                             <td>
@@ -122,19 +123,19 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                                     onClick={() => handelReview(parcel?.deliveryManId)}
                                     disabled={parcel?.status != 'Delivered'}>
                                     <MdReviews
-                                        className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
+                                        className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'} text-orange-400`} />
                                 </button>
                             </td>
-                            {parcel?.paymentStatus ? 
-                            <td>Paid</td>
-                            : <td>
-                                <Link to = {`/dashboard/payment/${parcel._id}`}>
-                                    <button disabled={parcel?.status != 'Delivered'}>
-                                        <BsStripe
-                                            className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
-                                    </button>
-                                </Link>
-                            </td>}
+                            {parcel?.paymentStatus ?
+                                <td><span className="text-lg font-bold text-gradient">Paid</span></td>
+                                : <td>
+                                    <Link to={`/dashboard/payment/${parcel._id}`}>
+                                        <button disabled={parcel?.status != 'Delivered'}>
+                                            <BsStripe
+                                                className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'} text-blue-600`} />
+                                        </button>
+                                    </Link>
+                                </td>}
                         </tr>)
                     }
 

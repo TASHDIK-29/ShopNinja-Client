@@ -2,11 +2,11 @@
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../../../assets/banner.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 90vh;
+    height: 100vh;
 }
 
 .text-gradient {
-    background: linear-gradient(to right, #0000ff, #ffffff); /* Apply a gradient background */
+    background: linear-gradient(to right, #0000ff, #FFA500); /* Apply a gradient background */
     -webkit-background-clip: text; /* Clip the background to the text */
     -webkit-text-fill-color: transparent; /* Make the text color transparent to show the gradient */
   }

@@ -72,7 +72,7 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
                             <td>{parcel?.bookingDate}</td>
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.price}</td>
-                            <td>{parcel?.status}</td>
+                            <td><span className={`${parcel?.status === 'pending' ? 'border border-yellow-400 text-yellow-300' : parcel?.status === 'Delivered' ? 'border border-green-400 text-green-400' : parcel?.status === 'On The Way' ? 'border border-blue-400 text-blue-400' : parcel?.status === 'Canceled' ? 'border border-red-400 text-red-400' : '' } px-2 py-1 rounded-md font-semibold uppercase`}>{parcel?.status}</span></td>
                             <td>
                                 {
                                     parcel?.status === 'pending' ? <button
