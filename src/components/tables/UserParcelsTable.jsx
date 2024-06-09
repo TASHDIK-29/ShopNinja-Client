@@ -125,14 +125,16 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                                         className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                 </button>
                             </td>
-                            <td>
+                            {parcel?.paymentStatus ? 
+                            <td>Paid</td>
+                            : <td>
                                 <Link to = {`/dashboard/payment/${parcel._id}`}>
                                     <button disabled={parcel?.status != 'Delivered'}>
                                         <BsStripe
                                             className={`text-lg ${parcel?.status != 'Delivered' ? 'cursor-not-allowed' : 'cursor-pointer'}`} />
                                     </button>
                                 </Link>
-                            </td>
+                            </td>}
                         </tr>)
                     }
 

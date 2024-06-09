@@ -95,6 +95,23 @@ const CheckoutForm = () => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
+
+
+                // save payment history at db
+                const payment = {
+                    email: parcel?.email,
+                    price: parcel.price,
+                    date: new Date(),
+                    parcelId: id,
+                    transactionId: paymentIntent.id
+                }
+
+                const resPost = await axiosSecure.post('/payments', payment);
+                console.log('Post = ',resPost.data);
+                const resUserPut = await axiosSecure.put(`/payments/user/${parcel?.email}`, {cost : parcel.price});
+                console.log('Put user = ',resUserPut.data);
+                const resParcelPut = await axiosSecure.put(`/payments/parcel/${id}`);
+                console.log('Put parcel = ',resParcelPut.data);
             }
         }
     }
