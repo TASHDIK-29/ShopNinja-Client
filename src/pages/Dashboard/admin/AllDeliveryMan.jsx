@@ -1,5 +1,6 @@
 import AdminAllDeliveryManTable from "../../../components/tables/AdminAllDeliveryManTable";
 import useAllDeliveryMan from "../../../hooks/useAllDeliveryMan";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const AllDeliveryMan = () => {
 
@@ -8,7 +9,7 @@ const AllDeliveryMan = () => {
 
     return (
         <div>
-            Total deliveryMan = {deliveryMans.length}
+            <SectionHeading heading={'All Deliveryman'}></SectionHeading>
             <AdminAllDeliveryManTable deliveryMans={deliveryMans} refetch={refetch}></AdminAllDeliveryManTable>
         </div>
     );

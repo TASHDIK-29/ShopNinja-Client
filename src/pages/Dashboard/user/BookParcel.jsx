@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const BookParcel = () => {
 
@@ -52,7 +53,7 @@ const BookParcel = () => {
 
     return (
         <div>
-            <h1>Book Your Parcel</h1>
+            <SectionHeading heading={'Book Your Parcel'}></SectionHeading>
             <ParcelForm setParcel={setParcel}></ParcelForm>
         </div>
     );

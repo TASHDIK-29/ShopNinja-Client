@@ -27,7 +27,7 @@ const SocialLogin = () => {
                         navigate('/');
                     })
 
-                //navigate('/'); // initial
+                navigate('/'); 
             })
 
     }

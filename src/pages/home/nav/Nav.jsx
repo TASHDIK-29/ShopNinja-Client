@@ -75,16 +75,16 @@ const Nav = () => {
                         }`}
                 >
                     <div className="flex flex-col items-center md:flex-row md:mx-6">
-                        <NavLink to='/' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        <NavLink to='/' className="my-2 text-gray-700 font-semibold transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Home
                         </NavLink>
-                        {role === 'admin' && <Link to='/dashboard/adminHome' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'admin' && <Link to='/dashboard/adminHome' className="my-2 text-gray-700 font-semibold transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
-                        {role === 'user' && <Link to='/dashboard/userParcel' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'user' && <Link to='/dashboard/userParcel' className="my-2 text-gray-700 font-semibold transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
-                        {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className="my-2 text-gray-700 font-semibold transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>}
                         {/* {!role && <Link to='/login' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
@@ -93,7 +93,7 @@ const Nav = () => {
                         {!role && <button onClick={handelDashboard} className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </button>}
-                        <MdEditNotifications />
+                        <MdEditNotifications className="text-orange-500 text-lg" />
                     </div>
 
                     <div className="flex justify-center md:block">

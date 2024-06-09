@@ -1,5 +1,6 @@
 import ReviewCard from "../../../components/cards/ReviewCard";
 import useAllReviews from "../../../hooks/useAllReviews";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const AllReviews = () => {
 
@@ -9,7 +10,7 @@ const AllReviews = () => {
 
     return (
         <div>
-            all reviews
+            <SectionHeading heading={'Reviews From Users'}></SectionHeading>
 
             <div className="grid grid-cols-2 gap-6">
                 {

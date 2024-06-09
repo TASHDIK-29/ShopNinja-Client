@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AdminAllUsersTable from "../../../components/tables/AdminAllUsersTable";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const AllUsers = () => {
 
@@ -36,7 +37,7 @@ const AllUsers = () => {
 
     return (
         <div className="relative h-screen ">
-            Total users = {users.length}
+            <SectionHeading heading={'All Users'}></SectionHeading>
             <AdminAllUsersTable users={users} refetch={refetch}></AdminAllUsersTable>
             <div className="space-x-2 absolute bottom-5 w-full flex justify-center">
                 {

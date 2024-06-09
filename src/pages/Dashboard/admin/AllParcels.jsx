@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import SectionHeading from "../../../shared/SectionHeading";
 
 
 const AllParcels = () => {
@@ -44,7 +45,7 @@ const AllParcels = () => {
 
     return (
         <div>
-            Total Parcels = {parcels.length}
+            <SectionHeading heading={'All The Parcels'}></SectionHeading>
             <form onSubmit={handelSearch} className="">
                 <div className="grid grid-cols-4 gap-4">
                     <div className="flex flex-col space-y-2">

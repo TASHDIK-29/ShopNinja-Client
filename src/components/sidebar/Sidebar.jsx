@@ -49,32 +49,50 @@ const Sidebar = () => {
                 </button>
             </div>
             {/* Sidebar */}
-            <div className={`w-64 min-h-screen h-full bg-orange-400 z-50 md:fixed absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'}  md:translate-x-0  transition duration-200 ease-in-out`}>
+            <div className={`w-64 min-h-screen h-full bg-blue-300 z-50 md:fixed absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'}  md:translate-x-0  transition duration-200 ease-in-out`}>
                 <ul className="pl-4">
+                    {/* {({ isActive }) => isActive ? 'text-lg text-rose-700 font-bold my-3' : 'text-lg dark:text-gray-600 font-bold my-3'} */}
                     {
                         role === 'admin' ? <>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/adminHome'>Statistics</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allParcels'>All Parcels</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allDeliveryMans'>All DeliveryMans</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                to='/dashboard/adminHome'>Statistics</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                to='/dashboard/allParcels'>All Parcels</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                to='/dashboard/allUsers'>All Users</NavLink></li>
+                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                to='/dashboard/allDeliveryMans'>All DeliveryMans</NavLink></li>
 
                         </>
                             : role === 'user' ? <>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/userParcel'>My Parcels</NavLink></li>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/bookParcel'>Book A Parcel</NavLink></li>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/userProfile'>My Profile</NavLink></li>
+                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                    className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                    to='/dashboard/userParcel'>My Parcels</NavLink></li>
+                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                    className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                    to='/dashboard/bookParcel'>Book A Parcel</NavLink></li>
+                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                    className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                    to='/dashboard/userProfile'>My Profile</NavLink></li>
                             </>
                                 : <>
-                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/deliveryList'>My Delivery List</NavLink></li>
-                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/dashboard/allReviews'>My Reviews</NavLink></li>
+                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                        className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                        to='/dashboard/deliveryList'>My Delivery List</NavLink></li>
+                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                        className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
+                                        to='/dashboard/allReviews'>My Reviews</NavLink></li>
                                 </>
                     }
                 </ul>
                 <div className="divider p-4"></div>
                 <ul className="pl-4">
-                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink to='/'>Home</NavLink></li>
-                    <li className="flex items-center gap-2 p-4"><MdOutlineRestaurantMenu /><NavLink to='/menu'>Menu</NavLink></li>
-                    <li className="flex items-center gap-2 p-4"><MdPhone /><NavLink to='/'>Contact</NavLink></li>
+                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink className='text-base text-gray-600 font-bold' to='/'>Home</NavLink></li>
+
                 </ul>
             </div>
         </>

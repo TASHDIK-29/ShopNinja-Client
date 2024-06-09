@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DeliveryListTable from "../../../components/tables/DeliveryListTable";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const DeliveryList = () => {
 
@@ -22,7 +23,7 @@ const DeliveryList = () => {
 
     return (
         <div>
-            Total deliveryList = {deliveryList.length}
+            <SectionHeading heading={'Your Delivery List'}></SectionHeading>
             <DeliveryListTable deliveryList={deliveryList} refetch={refetch}></DeliveryListTable>
         </div>
     );

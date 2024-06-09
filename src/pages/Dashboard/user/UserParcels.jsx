@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserParcelsTable from "../../../components/tables/UserParcelsTable";
 import { useState } from "react";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const UserParcels = () => {
 
@@ -27,7 +28,7 @@ const UserParcels = () => {
 
     return (
         <div>
-            my parcels
+            <SectionHeading heading={'Your Parcels'}></SectionHeading>
 
             <div className="flex justify-end py-2">
                 {/* Filter Button */}

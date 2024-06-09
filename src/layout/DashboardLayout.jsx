@@ -35,7 +35,7 @@ const Dashboard = () => {
                 <Sidebar></Sidebar>
            </div>
 
-            <div className="flex-1 md:ml-64 px-10 py-2 border border-red-600">
+            <div className="flex-1 md:ml-64 px-10 py-2">
                 <Outlet />
             </div>
         </div>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ParcelUpdateForm from "../../../components/forms/ParcelUpdateForm";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import SectionHeading from "../../../shared/SectionHeading";
 
 const UpdateParcel = () => {
 
@@ -48,7 +49,7 @@ const UpdateParcel = () => {
 
     return (
         <div>
-            update now
+            <SectionHeading heading={'Update Your Parcel'}></SectionHeading>
             <ParcelUpdateForm parcel={parcel} setUpdateParcel={setUpdateParcel} id={id}></ParcelUpdateForm>
         </div>
     );
