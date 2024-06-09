@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/socialLogin/SocialLogin';
 
+import image from '../../assets/log.jpg'
 const Login = () => {
 
     const { loginUser } = useAuth();
@@ -75,20 +76,20 @@ const Login = () => {
 
 
     return (
-        <section className="bg-white">
+        <section className="bg-white lg:flex flex-row-reverse">
             <Helmet>
                 <title>Login || Ship Ninja</title>
             </Helmet>
-            <div className="container flex flex-col items-center justify-center min-h-screen px-6 mx-auto">
-                <form onSubmit={handelLogin} className="w-full max-w-md">
-                    <div className="flex justify-center mx-auto">
-                        <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="Logo" />
-                    </div>
-
-                    <div className="flex items-center justify-center mt-6">
-                        <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300">
+            <div className="lg:w-1/3 flex flex-col items-center justify-center min-h-screen px-6 mx-auto">
+                <div className="flex justify-center my-2">
+                    <SocialLogin></SocialLogin>
+                </div>
+                <div className="divider divider-neutral">Or</div>
+                <form onSubmit={handelLogin} className="w-full max-w-md border-2 border-black p-4">
+                    <div className="flex items-center justify-center ">
+                        <h1 className="w-1/3 pb-4 font-semibold text-center text-blue-400 capitalize border-b-2 border-orange-400 ">
                             sign in
-                        </a>
+                        </h1>
 
                         {/* <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
                             sign up
@@ -158,9 +159,10 @@ const Login = () => {
                         </div>
                     </div>
                 </form>
-                <div className="flex justify-center mt-2">
-                    <SocialLogin></SocialLogin>
-                </div>
+
+            </div>
+            <div className="lg:w-1/2 flex items-center justify-center">
+                <img className="w-3/4" src={image} alt="" />
             </div>
         </section>
     );
