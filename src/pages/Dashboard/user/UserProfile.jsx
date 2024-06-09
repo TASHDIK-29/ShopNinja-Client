@@ -10,7 +10,7 @@ const UserProfile = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: userInfo = {} , refetch} = useQuery({
+    const { data: userInfo = {}, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${user?.email}`);
@@ -57,7 +57,7 @@ const UserProfile = () => {
 
     return (
         <section className="bg-white">
-            <div className="container px-6 py-10 mx-auto">
+            <div className="  py-10 mx-auto">
                 <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ">
                     Hello, {userInfo?.name}
                 </h1>
@@ -68,10 +68,16 @@ const UserProfile = () => {
                     <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
                 </div>
 
-                <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
+                <div className="mt-8 xl:mt-12 lg:flex lg:flex-row-reverse lg:items-center space-y-4">
+                    <div className=" lg:flex lg:w-1/2 lg:justify-center">
+                        <img
+                            className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full"
+                            src={userInfo?.image}
+                        />
+                    </div>
                     <div className="grid w-full grid-cols-1 gap-8 lg:w-1/2 xl:gap-16 md:grid-cols-2">
                         {/* Mum */}
-                        <div className="flex flex-col max-w-md p-6 space-y-4 divide-y sm:w-96 sm:p-10 dark:divide-gray-300 dark:bg-gray-50 dark:text-gray-800">
+                        <div className=" flex flex-col p-6 space-y-4 divide-y sm:w-96 sm:p-10 dark:divide-gray-300 dark:bg-gray-50 dark:text-gray-800">
                             <h2 className="text-2xl font-semibold">Your Information</h2>
                             <ul className="flex flex-col pt-4 space-y-2">
                                 <li className="flex items-start justify-between">
@@ -100,7 +106,7 @@ const UserProfile = () => {
                                     <h3>Total Spent : ${userInfo?.totalSpent}</h3>
                                 </li>
                             </div>
-                            
+
                             <div className="pt-4 space-y-2">
                                 <div className="space-y-6">
 
@@ -145,12 +151,7 @@ const UserProfile = () => {
 
                     </div>
 
-                    <div className="hidden lg:flex lg:w-1/2 lg:justify-center">
-                        <img
-                            className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full"
-                            src={userInfo?.image}
-                        />
-                    </div>
+
                 </div>
             </div>
         </section>
