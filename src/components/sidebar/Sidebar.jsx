@@ -6,6 +6,13 @@ import { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import useUserRole from "../../hooks/useUserRole";
 import { TbTruckDelivery } from "react-icons/tb";
+import { MdFormatListBulletedAdd } from "react-icons/md";
+import { CiViewList } from "react-icons/ci";
+import { ImProfile } from "react-icons/im";
+import { IoIosStats } from "react-icons/io";
+import { GrUserWorker } from "react-icons/gr";
+import { MdReviews } from "react-icons/md";
+
 
 const Sidebar = () => {
 
@@ -54,36 +61,36 @@ const Sidebar = () => {
                     {/* {({ isActive }) => isActive ? 'text-lg text-rose-700 font-bold my-3' : 'text-lg dark:text-gray-600 font-bold my-3'} */}
                     {
                         role === 'admin' ? <>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                            <li className="flex items-center gap-2 p-4"><IoIosStats /><NavLink
                                 className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                 to='/dashboard/adminHome'>Statistics</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                            <li className="flex items-center gap-2 p-4"><FaList /><NavLink
                                 className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                 to='/dashboard/allParcels'>All Parcels</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                            <li className="flex items-center gap-2 p-4"><FaUsers /><NavLink
                                 className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                 to='/dashboard/allUsers'>All Users</NavLink></li>
-                            <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                            <li className="flex items-center gap-2 p-4"><GrUserWorker /><NavLink
                                 className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                 to='/dashboard/allDeliveryMans'>All DeliveryMans</NavLink></li>
 
                         </>
                             : role === 'user' ? <>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                <li className="flex items-center gap-2 p-4"><FaList /><NavLink
                                     className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                     to='/dashboard/userParcel'>My Parcels</NavLink></li>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                <li className="flex items-center gap-2 p-4"><MdFormatListBulletedAdd className="text-xl" /><NavLink
                                     className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                     to='/dashboard/bookParcel'>Book A Parcel</NavLink></li>
-                                <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                <li className="flex items-center gap-2 p-4"><ImProfile className="text-lg" /><NavLink
                                     className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                     to='/dashboard/userProfile'>My Profile</NavLink></li>
                             </>
                                 : <>
-                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                    <li className="flex items-center gap-2 p-4"><FaList /><NavLink
                                         className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                         to='/dashboard/deliveryList'>My Delivery List</NavLink></li>
-                                    <li className="flex items-center gap-2 p-4"><FaHome /><NavLink
+                                    <li className="flex items-center gap-2 p-4"><MdReviews /><NavLink
                                         className={({ isActive }) => isActive ? 'text-base text-white font-bold' : 'text-base dark:text-gray-600 font-bold'}
                                         to='/dashboard/allReviews'>My Reviews</NavLink></li>
                                 </>

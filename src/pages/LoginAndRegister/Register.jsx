@@ -13,6 +13,7 @@ import { imageUpload } from "../../utils/imageURL";
 import { useState } from "react";
 
 import image from '../../assets/reg.jpg'
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const Register = () => {
 
@@ -23,7 +24,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { createUser, updateUserProfile, logoutUser } = useAuth();
+    const { createUser, updateUserProfile, logoutUser, loading } = useAuth();
 
     const {
         register,
@@ -132,7 +133,7 @@ const Register = () => {
                     {errors.name && <span className="text-red-600 font-bold">Name is required</span>}
 
                     <div className="relative flex items-center mt-8">
-                        
+
 
 
                         {/* ******** */}
@@ -224,10 +225,18 @@ const Register = () => {
                     {errors.password?.type === 'pattern' && <span className="text-red-600 font-bold">Password must contain at least one Uppercase and Special character</span>}
 
 
-                    
+
 
                     <div className="mt-6">
-                        <input className="w-full px-6 py-3 text-sm font-medium bg-blue-500 hover:bg-blue-400 rounded-lg text-white cursor-pointer" type="submit" value="Sign Up" />
+                        {/* <input className="w-full px-6 py-3 text-sm font-medium bg-blue-500 hover:bg-blue-400 rounded-lg text-white cursor-pointer" type="submit" value="Sign Up" /> */}
+
+                        <button
+                            disabled={loading}
+                            type='submit'
+                            className='w-full px-6 py-3 text-sm font-medium bg-blue-500 hover:bg-blue-400 rounded-lg text-white cursor-pointer'
+                        >
+                            {loading ? <TbFidgetSpinner className='animate-spin m-auto' /> : 'Sign Up'}
+                        </button>
 
                         <div className="mt-6 text-center">
                             <Link to='/login' className="text-sm text-blue-500 hover:underline dark:text-blue-400">
@@ -239,7 +248,7 @@ const Register = () => {
                 </form>
 
             </div>
-            <div className="lg:w-1/2 flex items-center">
+            <div className="hidden lg:w-1/2 lg:flex items-center">
                 <img className="w-3/4" src={image} alt="" />
             </div>
         </section>

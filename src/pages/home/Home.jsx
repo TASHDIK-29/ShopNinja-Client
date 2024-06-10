@@ -3,8 +3,15 @@ import Banner from "./banner/Banner";
 import Features from "./features/Features";
 import TopDeliveryMan from "./topDeliveryMan/TopDeliveryMan";
 import Footer from "./footer/Footer";
+import { useEffect } from "react";
 
 const Home = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
+
     return (
         <div>
             <Helmet>

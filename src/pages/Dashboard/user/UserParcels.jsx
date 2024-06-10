@@ -2,10 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserParcelsTable from "../../../components/tables/UserParcelsTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 const UserParcels = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const [status, setStatus] = useState('');
 
@@ -28,6 +33,9 @@ const UserParcels = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>All Parcel || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'Your Parcels'}></SectionHeading>
 
             <div className="flex justify-end py-2">

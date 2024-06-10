@@ -5,8 +5,13 @@ import ParcelUpdateForm from "../../../components/forms/ParcelUpdateForm";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 const UpdateParcel = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const { id } = useParams();
     console.log(id);
@@ -24,31 +29,14 @@ const UpdateParcel = () => {
         }
     })
 
-    console.log('single : ',parcel);
+    // console.log('single : ',parcel);
 
-
-    // Update parcel data 
-    // useEffect(() => {
-    //     if (parcel.parcelWeight > 0) {
-    //         axiosSecure.patch(`/parcels/${id}`, updateParcel)
-    //             .then(res => {
-    //                 console.log(res.data);
-
-    //                 if (res.data.modifiedCount) {
-    //                     Swal.fire({
-    //                         position: "top-center",
-    //                         icon: "success",
-    //                         title: "Parcel updated successfully. Please wait for admin approval",
-    //                         showConfirmButton: false,
-    //                         timer: 1500
-    //                     });
-    //                 }
-    //             })
-    //     }
-    // }, [updateParcel])
 
     return (
         <div>
+            <Helmet>
+                <title>Update || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'Update Your Parcel'}></SectionHeading>
             <ParcelUpdateForm parcel={parcel} setUpdateParcel={setUpdateParcel} id={id}></ParcelUpdateForm>
         </div>

@@ -6,8 +6,13 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 const BookParcel = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const { user } = useAuth();
 
@@ -53,6 +58,9 @@ const BookParcel = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Book Parcel || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'Book Your Parcel'}></SectionHeading>
             <ParcelForm setParcel={setParcel}></ParcelForm>
         </div>

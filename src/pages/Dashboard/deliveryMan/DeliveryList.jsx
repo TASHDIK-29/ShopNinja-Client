@@ -3,8 +3,14 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DeliveryListTable from "../../../components/tables/DeliveryListTable";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 const DeliveryList = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const {user} = useAuth();
 
@@ -23,6 +29,9 @@ const DeliveryList = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Delivery List || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'Your Delivery List'}></SectionHeading>
             <DeliveryListTable deliveryList={deliveryList} refetch={refetch}></DeliveryListTable>
         </div>

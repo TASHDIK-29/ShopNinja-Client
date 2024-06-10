@@ -4,11 +4,16 @@ import AdminAllParcelsTable from "../../../components/tables/AdminAllParcelsTabl
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 
 const AllParcels = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
@@ -45,6 +50,9 @@ const AllParcels = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>All Parcel || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'All The Parcels'}></SectionHeading>
             <form onSubmit={handelSearch} className=" my-5">
                 <div className="grid md:grid-cols-12 gap-4">

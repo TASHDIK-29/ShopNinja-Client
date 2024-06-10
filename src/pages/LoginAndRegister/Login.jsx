@@ -139,7 +139,7 @@ const Login = () => {
                 </form>
 
             </div>
-            <div className="lg:w-1/2 flex items-center justify-center">
+            <div className="hidden lg:w-1/2 lg:flex items-center justify-center">
                 <img className="w-3/4" src={image} alt="" />
             </div>
         </section>

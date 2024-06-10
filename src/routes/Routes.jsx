@@ -20,11 +20,13 @@ import UserRoute from "./UserRoute";
 import DeliverymanRoute from "./DeliverymanRoute";
 import Payment from "../pages/Dashboard/payment/Payment";
 import PaymentSuccess from "../pages/Dashboard/payment/PaymentSuccess";
+import ErrorPage from "../pages/error/ErrorPage";
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout />,
+      errorElement: <ErrorPage />,
       children:[
         {
             path: '/',

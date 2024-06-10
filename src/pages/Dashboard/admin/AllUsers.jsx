@@ -4,8 +4,13 @@ import AdminAllUsersTable from "../../../components/tables/AdminAllUsersTable";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionHeading from "../../../shared/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [count, setCount] = useState(0);
@@ -37,6 +42,9 @@ const AllUsers = () => {
 
     return (
         <div className="relative min-h-screen">
+            <Helmet>
+                <title>All User || Ship Ninja</title>
+            </Helmet>
             <SectionHeading heading={'All Users'}></SectionHeading>
             <div>
                 <AdminAllUsersTable users={users} refetch={refetch}></AdminAllUsersTable>

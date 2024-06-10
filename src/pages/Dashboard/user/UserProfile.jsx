@@ -3,8 +3,14 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../utils/imageURL";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 const UserProfile = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     const { user, updateUserProfile } = useAuth();
 
@@ -57,6 +63,9 @@ const UserProfile = () => {
 
     return (
         <section className="bg-white">
+            <Helmet>
+                <title>Profile || Ship Ninja</title>
+            </Helmet>
             <div className="  py-10 mx-auto">
                 <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ">
                     Hello, {userInfo?.name}
