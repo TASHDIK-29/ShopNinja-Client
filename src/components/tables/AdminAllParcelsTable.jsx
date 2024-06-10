@@ -3,6 +3,7 @@ import AdminManageParcelModal from "../modals/AdminManageParcelModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAllDeliveryMan from "../../hooks/useAllDeliveryMan";
+import Swal from "sweetalert2";
 
 const AdminAllParcelsTable = ({ parcels, refetch }) => {
     console.log('parcels :', parcels);
@@ -44,13 +45,21 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
 
                 if (res.data.modifiedCount > 0) {
                     refetch();
+
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Parcel On The Way!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             })
     }, [patchData])
 
     return (
         <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table overflow-x-auto">
                 {/* head */}
                 <thead>
                     <tr>
@@ -72,7 +81,10 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
                             <td>{parcel?.bookingDate}</td>
                             <td>{parcel?.deliveryDate}</td>
                             <td>{parcel?.price}</td>
-                            <td><span className={`${parcel?.status === 'pending' ? 'border border-yellow-400 text-yellow-300' : parcel?.status === 'Delivered' ? 'border border-green-400 text-green-400' : parcel?.status === 'On The Way' ? 'border border-blue-400 text-blue-400' : parcel?.status === 'Canceled' ? 'border border-red-400 text-red-400' : '' } px-2 py-1 rounded-md font-semibold uppercase`}>{parcel?.status}</span></td>
+                            <td className="border capitalize"><span className={`${parcel?.status === 'pending' ? 'border border-yellow-400 text-yellow-300' : parcel?.status === 'Delivered' ? 'border border-green-400 text-green-400' : parcel?.status === 'On The Way' ? 'border border-blue-400 text-blue-400' : parcel?.status === 'Canceled' ? 'border border-red-400 text-red-400' : ''} px-2 py-1 rounded-md font-semibold `}>
+                                {/* {parcel?.status === 'On The Way' ? `O.T.Way` : parcel?.status} */}
+                                {parcel?.status}
+                            </span></td>
                             <td>
                                 {
                                     parcel?.status === 'pending' ? <button
@@ -84,7 +96,7 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
                                     </button>
                                         : <button
                                             disabled={parcel?.status != 'pending'}
-                                            
+
                                             className="cursor-not-allowed px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
                                         >
                                             Manage

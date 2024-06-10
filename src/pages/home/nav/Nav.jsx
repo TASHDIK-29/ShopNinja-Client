@@ -90,7 +90,7 @@ const Nav = () => {
                         {/* {!role && <Link to='/login' className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </Link>} */}
-                        {!role && <button onClick={handelDashboard} className="my-2 text-gray-700 transition-colors duration-300 transform  md:mx-4 md:my-0">
+                        {!role && <button onClick={handelDashboard} className="my-2 text-gray-700 font-semibold transition-colors duration-300 transform  md:mx-4 md:my-0">
                             Dashboard
                         </button>}
                         <MdEditNotifications className="text-orange-500 text-lg" />
@@ -101,24 +101,24 @@ const Nav = () => {
                         {
                             user ? <>
 
-                                <div className="dropdown dropdown-bottom dropdown-end">
+                                <div className="dropdown dropdown-bottom md:dropdown-end">
                                     <div tabIndex={0} role="button" className="m-1 w-12 h-12 rounded-full">
                                         <img className="w-full rounded-full" src={user?.photoURL} alt="" />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li className="mx-4 cursor-default">{user?.displayName}</li>
+                                        <li className="mx-4 cursor-default text-gray-700 font-semibold">{user?.displayName}</li>
                                         <li>
-                                            {role === 'admin' && <Link to='/dashboard/adminHome' className=" text-gray-700 transition-colors duration-300 transform">
+                                            {role === 'admin' && <Link to='/dashboard/adminHome' className=" text-gray-700 font-semibold transition-colors duration-300 transform">
                                                 Dashboard
                                             </Link>}
-                                            {role === 'user' && <Link to='/dashboard/userParcel' className=" text-gray-700 transition-colors duration-300 transform">
+                                            {role === 'user' && <Link to='/dashboard/userParcel' className=" text-gray-700 font-semibold transition-colors duration-300 transform">
                                                 Dashboard
                                             </Link>}
-                                            {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className=" text-gray-700 transition-colors duration-300 transform">
+                                            {role === 'deliveryMan' && <Link to='/dashboard/deliveryList' className=" text-gray-700 font-semibold transition-colors duration-300 transform">
                                                 Dashboard
                                             </Link>}
                                         </li>
-                                        <li><button onClick={handelLogout}>Logout</button></li>
+                                        <li><button onClick={handelLogout} className="text-gray-700 font-semibold">Logout</button></li>
                                     </ul>
                                 </div>
 
@@ -127,7 +127,7 @@ const Nav = () => {
 
 
                             </>
-                                : <Link to='/login'>Login</Link>
+                                : <Link to='/login' className="text-gray-700 font-semibold">Login</Link>
                         }
                     </div>
                 </div>

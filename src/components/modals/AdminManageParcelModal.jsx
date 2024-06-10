@@ -38,10 +38,10 @@ const AdminManageParcelModal = ({ isOpen, setIsOpen, setPatchData, deliveryMans 
                 </span>
 
                 <div
-                    className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle"
+                    className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl  sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle"
 
                 >
-                    <h3 className="text-lg font-medium text-center underline leading-6 text-gray-800 capitalize dark:text-white" id="modal-title">
+                    <h3 className="text-lg font-medium text-center underline leading-6 text-gray-800 capitalize " id="modal-title">
                         Manage Parcel
                     </h3>
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
@@ -49,7 +49,7 @@ const AdminManageParcelModal = ({ isOpen, setIsOpen, setPatchData, deliveryMans 
                     </p>
 
                     <form onSubmit={handleSubmit} className="mt-4">
-                        <label htmlFor="emails-list" className="text-sm text-gray-700 dark:text-gray-200">
+                        <label htmlFor="emails-list" className="text-sm text-gray-700 ">
                             Select Delivery Man
                         </label>
 
@@ -67,7 +67,7 @@ const AdminManageParcelModal = ({ isOpen, setIsOpen, setPatchData, deliveryMans 
                         </label>
 
 
-                        <label htmlFor="emails-list" className="text-sm text-gray-700 dark:text-gray-200">
+                        <label htmlFor="emails-list" className="text-sm text-gray-700 ">
                             Approximate Delivery Date
                         </label>
 
@@ -75,19 +75,7 @@ const AdminManageParcelModal = ({ isOpen, setIsOpen, setPatchData, deliveryMans 
                             <DatePicker name="deliveryDate" className="p-2 w-full rounded-md border border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDate} onChange={(date) => setStartDate(date)} />
                         </label>
 
-
-
-
-
                         <div className="mt-4 sm:flex sm:items-center sm:-mx-2">
-                            {/* <button
-                                type="button"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
-                            >
-                                Cancel
-                            </button> */}
-
                             <input
                                 type="submit"
                                 value="Assign"

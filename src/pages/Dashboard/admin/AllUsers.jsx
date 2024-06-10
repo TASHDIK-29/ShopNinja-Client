@@ -36,10 +36,12 @@ const AllUsers = () => {
     })
 
     return (
-        <div className="relative h-screen ">
+        <div className="relative min-h-screen">
             <SectionHeading heading={'All Users'}></SectionHeading>
-            <AdminAllUsersTable users={users} refetch={refetch}></AdminAllUsersTable>
-            <div className="space-x-2 absolute bottom-5 w-full flex justify-center">
+            <div>
+                <AdminAllUsersTable users={users} refetch={refetch}></AdminAllUsersTable>
+            </div>
+            <div className="space-x-2 absolute -bottom-8 lg:bottom-5 w-full flex justify-center">
                 {
                     pages.map(i => <button className={currentPage === i ? 'bg-blue-500 text-white font-semibold px-3 py-1 rounded-full  ' : 'px-3 py-1 rounded-full border text-orange-400 font-medium border-orange-400'} onClick={() => setCurrentPage(i)} key={i}>{i}</button>)
                 }

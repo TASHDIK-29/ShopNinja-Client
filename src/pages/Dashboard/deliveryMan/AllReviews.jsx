@@ -12,7 +12,7 @@ const AllReviews = () => {
         <div>
             <SectionHeading heading={'Reviews From Users'}></SectionHeading>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {
                     reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
                 }

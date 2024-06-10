@@ -115,7 +115,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                             <td><button
                             onClick={() => handelLocation(parcel.latitude, parcel.longitude)}
                             >
-                                    <MdOutlineLocationOn className="text-xl" />
+                                    <MdOutlineLocationOn className="text-2xl text-blue-500" />
                                 </button>
                             </td>
                             <td>
@@ -123,8 +123,8 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                     parcel?.status === 'On The Way' ?
                                         <button
                                             onClick={() => handelParcel(parcel._id, 'Canceled')}
-                                            className=""><MdCancelPresentation className="text-xl" /></button>
-                                        : <button disabled className=" cursor-not-allowed"><MdCancelPresentation className="text-xl" /></button>
+                                            className=""><MdCancelPresentation className="text-2xl text-red-500" /></button>
+                                        : <button disabled className=" cursor-not-allowed"><MdCancelPresentation className="text-2xl text-red-500" /></button>
                                 }
                             </td>
                             <td>
@@ -132,8 +132,8 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                                     parcel?.status === 'On The Way' ?
                                         <button
                                             onClick={() => handelParcel(parcel._id, 'Delivered')}
-                                            className=""><AiOutlineDeliveredProcedure className="text-xl" /></button>
-                                        : <button disabled className=" cursor-not-allowed"><AiOutlineDeliveredProcedure className="text-xl" /></button>
+                                            className=""><AiOutlineDeliveredProcedure className="text-2xl text-green-500" /></button>
+                                        : <button disabled className=" cursor-not-allowed"><AiOutlineDeliveredProcedure className="text-2xl text-green-500" /></button>
                                 }
                             </td>
                         </tr>)

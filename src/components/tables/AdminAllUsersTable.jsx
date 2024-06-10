@@ -40,7 +40,7 @@ const AdminAllUsersTable = ({ users, refetch }) => {
     }
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto my-10">
             <table className="table">
                 {/* head */}
                 <thead>

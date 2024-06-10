@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
 
@@ -109,13 +110,31 @@ const CheckoutForm = () => {
                 }
 
                 const resPost = await axiosSecure.post('/payments', payment);
-                console.log('Post = ',resPost.data);
-                const resUserPut = await axiosSecure.put(`/payments/user/${parcel?.email}`, {cost : parcel.price});
-                console.log('Put user = ',resUserPut.data);
+                console.log('Post = ', resPost.data);
+                const resUserPut = await axiosSecure.put(`/payments/user/${parcel?.email}`, { cost: parcel.price });
+                console.log('Put user = ', resUserPut.data);
                 const resParcelPut = await axiosSecure.put(`/payments/parcel/${id}`);
-                console.log('Put parcel = ',resParcelPut.data);
+                console.log('Put parcel = ', resParcelPut.data);
 
                 navigate('/dashboard/paymentSuccess');
+
+                Swal.fire({
+                    title: `Your Transaction ID : ${paymentIntent.id}`,
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                });
             }
         }
     }
@@ -138,7 +157,7 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button className="px-2 py-1 font-semibold bg-orange-500 rounded-md my-4" type="submit"
+            <button className="px-2 py-1 font-semibold bg-blue-400 rounded-md my-4 text-slate-200" type="submit"
                 disabled={!stripe || !clientSecret}>
                 Pay
             </button>

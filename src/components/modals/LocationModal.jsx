@@ -1,5 +1,6 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import { IoLocationSharp } from "react-icons/io5";
+import { MdCancelPresentation } from "react-icons/md";
 
 import "leaflet/dist/leaflet.css"
 
@@ -17,7 +18,7 @@ const LocationModal = ({ setIsOpen, latitude, longitude }) => {
                 </span>
 
                 <div
-                    className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-2xl h-[400px] sm:p-6 sm:align-middle"
+                    className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl  sm:my-8 w-full sm:max-w-2xl h-[400px] sm:p-6 sm:align-middle"
 
                 >
                     <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false}>
@@ -33,8 +34,8 @@ const LocationModal = ({ setIsOpen, latitude, longitude }) => {
                         </Marker>
                     </MapContainer>
 
-                    <div className='flex justify-center my-2'>
-                        <button onClick={() => setIsOpen(false)} className="btn">Close</button>
+                    <div className='flex justify-end items-center mt-6'>
+                        <button onClick={() => setIsOpen(false)} className="text-2xl text-blue-500"><MdCancelPresentation /></button>
                     </div>
                 </div>
             </div>

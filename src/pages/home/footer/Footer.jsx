@@ -1,7 +1,7 @@
 import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { TbTruckDelivery } from "react-icons/tb";
-
+import signature from '../../../assets/sig2.png'
 
 const Footer = () => {
     return (
@@ -14,6 +14,7 @@ const Footer = () => {
                         <p className="text-white">
                             At ShopNinja, we prioritize your parcels' safety and swift delivery. Our advanced technology and dedicated team ensure every shipment is secure and on time. Trust us to handle your deliveries with care and efficiency. Thank you for choosing us.
                         </p>
+                        <img src={signature} alt="" />
                     </div>
 
                     <div className="sm:col-span-1 pl-6">
