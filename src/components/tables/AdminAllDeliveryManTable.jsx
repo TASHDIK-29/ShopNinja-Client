@@ -1,5 +1,13 @@
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const AdminAllDeliveryManTable = ({deliveryMans, refetch}) => {
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -16,7 +24,7 @@ const AdminAllDeliveryManTable = ({deliveryMans, refetch}) => {
                 </thead>
                 <tbody>
                     {
-                        deliveryMans.map((deliveryMan, index) => <tr key={deliveryMan._id}>
+                        deliveryMans.map((deliveryMan, index) => <tr key={deliveryMan._id} data-aos="fade-up">
                             <th>{index + 1}</th>
                             <td>{deliveryMan?.name}</td>
                             <td>{deliveryMan?.phone}</td>

@@ -4,9 +4,15 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAllDeliveryMan from "../../hooks/useAllDeliveryMan";
 import Swal from "sweetalert2";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const AdminAllParcelsTable = ({ parcels, refetch }) => {
     console.log('parcels :', parcels);
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -74,7 +80,7 @@ const AdminAllParcelsTable = ({ parcels, refetch }) => {
                 </thead>
                 <tbody>
                     {
-                        parcels.map((parcel, index) => <tr key={parcel._id}>
+                        parcels.map((parcel, index) => <tr key={parcel._id} data-aos="fade-up">
                             <th>{index + 1}</th>
                             <td>{parcel?.userName}</td>
                             <td>{parcel?.userPhone}</td>

@@ -2,9 +2,15 @@ import { RiAdminFill } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const AdminAllUsersTable = ({ users, refetch }) => {
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
     console.log('users = ', users);
 
@@ -56,7 +62,7 @@ const AdminAllUsersTable = ({ users, refetch }) => {
                 </thead>
                 <tbody>
                     {
-                        users.map((user, index) => <tr key={user._id}>
+                        users.map((user, index) => <tr key={user._id} data-aos="fade-up">
                             <th>{index + 1}</th>
                             <td>{user?.name}</td>
                             <td>{user?.phone}</td>

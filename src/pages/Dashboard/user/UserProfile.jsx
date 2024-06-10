@@ -5,12 +5,18 @@ import { imageUpload } from "../../../utils/imageURL";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const UserProfile = () => {
 
     useEffect(() => {
         window.scroll(0, 0);
     }, []);
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
     const { user, updateUserProfile } = useAuth();
 
@@ -78,13 +84,13 @@ const UserProfile = () => {
                 </div>
 
                 <div className="mt-8 xl:mt-12 lg:flex lg:flex-row-reverse lg:items-center space-y-4">
-                    <div className=" lg:flex lg:w-1/2 lg:justify-center">
+                    <div className=" lg:flex lg:w-1/2 lg:justify-center" data-aos="flip-right">
                         <img
                             className="w-[28rem] h-[28rem] flex-shrink-0 object-cover xl:w-[34rem] xl:h-[34rem] rounded-full"
                             src={userInfo?.image}
                         />
                     </div>
-                    <div className="grid w-full grid-cols-1 gap-8 lg:w-1/2 xl:gap-16 md:grid-cols-2">
+                    <div className="grid w-full grid-cols-1 gap-8 lg:w-1/2 xl:gap-16 md:grid-cols-2" data-aos="fade-up">
                         {/* Mum */}
                         <div className=" flex flex-col p-6 space-y-4 divide-y sm:w-96 sm:p-10 dark:divide-gray-300 dark:bg-gray-50 dark:text-gray-800">
                             <h2 className="text-2xl font-semibold">Your Information</h2>

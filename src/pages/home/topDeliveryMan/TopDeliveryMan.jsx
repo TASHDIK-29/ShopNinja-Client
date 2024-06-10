@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TopDeliverymanCard from "../../../components/cards/TopDeliverymanCard";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const TopDeliveryMan = () => {
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
     const [query, setQuery] = useState('ratings')
 
@@ -45,7 +51,7 @@ const TopDeliveryMan = () => {
 
                 </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 my-5">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 my-5" data-aos="zoom-in">
                 {
                     topDeliveryMan.map(deliveryMan => <TopDeliverymanCard key={deliveryMan._id} deliveryMan={deliveryMan}></TopDeliverymanCard>)
                 }

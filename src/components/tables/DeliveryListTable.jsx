@@ -8,9 +8,15 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import LocationModal from "../modals/LocationModal";
 import { useState } from "react";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const DeliveryListTable = ({ deliveryList, refetch }) => {
+
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
     const { user } = useAuth();
 
@@ -102,7 +108,7 @@ const DeliveryListTable = ({ deliveryList, refetch }) => {
                 </thead>
                 <tbody>
                     {
-                        deliveryList.map((parcel, index) => <tr key={parcel._id}>
+                        deliveryList.map((parcel, index) => <tr key={parcel._id} data-aos="fade-up">
                             <th>{index + 1}</th>
                             <td>{parcel?.userName}</td>
                             <td>{parcel?.userPhone}</td>

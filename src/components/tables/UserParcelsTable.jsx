@@ -7,12 +7,17 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import UserReviewModal from "../modals/UserReviewModal";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 
 const UserParcelsTable = ({ parcels, refetch }) => {
     console.log(parcels);
 
+    useEffect( () =>{
+        AOS.init({duration: 1000});
+    },[])
 
 
     const axiosSecure = useAxiosSecure();
@@ -89,7 +94,7 @@ const UserParcelsTable = ({ parcels, refetch }) => {
                 </thead>
                 <tbody>
                     {
-                        parcels.map((parcel, index) => <tr key={parcel._id}>
+                        parcels.map((parcel, index) => <tr key={parcel._id} data-aos="fade-up">
                             <th>{index + 1}</th>
                             <td>{parcel?.parcelType}</td>
                             <td>{parcel?.deliveryDate}</td>
