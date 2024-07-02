@@ -1,11 +1,16 @@
 # ShopNinja
 
-Admin: Tashdik
-Password: A@1234
+Our Delivery Management System, ShopNinja Offers our users delivering their products to the destiny in time with safety.
+
+
 
 * LiveURL : https://shipninja-a12.web.app
 
-# Features of my website
+## Admin Access
+* Admin Email : td@trk.com
+* Password : A@1234
+
+## Features of my website
 
 
 * Admin Dashboard: Provides comprehensive control for managing parcel bookings, approving requests, and assigning
@@ -40,3 +45,20 @@ Password: A@1234
 
 * The platform ensures secure user authentication through JWT, preventing unauthorized access and safeguarding user 
   information and interactions.
+
+
+## Technologies
+
+* React.js
+* JavaScript
+* Tailwind CSS
+* Firebase 
+
+## Run At Local Machine
+
+* Clone - https://github.com/TASHDIK-29/ShopNinja-Client.git
+* Instal npm packages - npm i
+* Set up a  project at firebase.
+* You need to connect imgBB.
+* For payment gateway you need to connect Stripe.
+* Make env.local file for environment variable for firebase config keys, imgBB api key and Stripe public key.
